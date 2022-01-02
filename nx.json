@@ -25,6 +25,9 @@
     "mbob-scanner-e2e": {
       "tags": [],
       "implicitDependencies": ["mbob-scanner"]
+    },
+    "ui-kit": {
+      "tags": []
     }
   }
 }
