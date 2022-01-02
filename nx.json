@@ -1,0 +1,30 @@
+{
+  "npmScope": "react-quick-hacks",
+  "affected": {
+    "defaultBase": "master"
+  },
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
+    },
+    ".eslintrc.json": "*"
+  },
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
+    }
+  },
+  "projects": {
+    "mbob-scanner": {
+      "tags": []
+    },
+    "mbob-scanner-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mbob-scanner"]
+    }
+  }
+}
