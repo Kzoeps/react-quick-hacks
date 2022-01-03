@@ -19,6 +19,9 @@
     }
   },
   "projects": {
+    "layout": {
+      "tags": []
+    },
     "mbob-scanner": {
       "tags": []
     },
