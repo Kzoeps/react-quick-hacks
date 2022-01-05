@@ -1,7 +1,8 @@
 import './layout.module.scss';
-import { Layout as AntDLayout, Menu, Breadcrumb, Button } from 'antd';
+import { Breadcrumb, Button, Layout as AntDLayout, Menu } from 'antd';
 import React, { useState } from 'react';
 import HktDrawer from './components/hkt-drawer/hkt-drawer';
+import { MenuUnfoldOutlined } from '@ant-design/icons';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {}
@@ -17,13 +18,10 @@ export function Layout(props: LayoutProps) {
   return (
     <AntDLayout className="layout">
       <Header>
-        <div className="logo" />
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
-          {arr.map(item => (
-            <Menu.Item key={item}>
-              <a href="https://www.google.com">navigation {item}</a>
-            </Menu.Item>
-          ))}
+        <div className='logo' />
+        <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
+          <Button shape='circle' icon={<MenuUnfoldOutlined />} onClick={() => setShowDrawer(true)} />
+          <HktDrawer showDrawer={showDrawer} onDrawerClose={onDrawerClose} />
         </Menu>
       </Header>
       <Content style={{ padding: '0 50px' }}>
