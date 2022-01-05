@@ -1,6 +1,7 @@
 import './layout.module.scss';
-import { Layout as AntDLayout, Menu, Breadcrumb } from 'antd';
-import React from 'react';
+import { Layout as AntDLayout, Menu, Breadcrumb, Button } from 'antd';
+import React, { useState } from 'react';
+import HktDrawer from './components/hkt-drawer/hkt-drawer';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {}
@@ -8,7 +9,10 @@ export interface LayoutProps {}
 const { Header, Content, Footer } = AntDLayout;
 
 export function Layout(props: LayoutProps) {
-  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [showDrawer, setShowDrawer] = useState<boolean>(true);
+  const onDrawerClose = () => {
+    setShowDrawer(false);
+  };
   return (
     <AntDLayout className="layout">
       <Header>

@@ -3,10 +3,12 @@ import styles from './app.module.scss';
 import { ReactComponent as Logo } from './logo.svg';
 import star from './star.svg';
 import { Layout } from '@react-quick-hacks/layout';
+import { Button } from 'antd';
 
 export function App() {
   return (
     <>
+      <Button type="primary">Hello</Button>
       <Layout/>
 {/*      <div className={styles.app}>
         <header className="flex">
