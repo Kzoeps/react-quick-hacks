@@ -7,5 +7,8 @@
       }
     ]
   ],
-  "plugins": []
+  "plugins": [
+    ["import", { "libraryName": "antd",  "style":  true}, "antd"],
+    ["import", { "libraryName": "antd-mobile", "libraryDirectory": "lib"}, "antd-mobile"]
+  ]
 }

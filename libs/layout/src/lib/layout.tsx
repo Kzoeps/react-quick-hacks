@@ -13,6 +13,7 @@ export function Layout(props: LayoutProps) {
   const onDrawerClose = () => {
     setShowDrawer(false);
   };
+  const arr = [1, 2, 3, 4, 5];
   return (
     <AntDLayout className="layout">
       <Header>
