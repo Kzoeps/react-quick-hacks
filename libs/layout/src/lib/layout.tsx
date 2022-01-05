@@ -1,34 +1,35 @@
 import './layout.module.scss';
-import { Layout as AntDLayout, Menu } from 'antd';
+import { Layout as AntDLayout, Menu, Breadcrumb } from 'antd';
 import React from 'react';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {}
 
-const { Sider } = AntDLayout;
+const { Header, Content, Footer } = AntDLayout;
 
 export function Layout(props: LayoutProps) {
+  const arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
   return (
-    <AntDLayout>
-      <Sider
-      breakpoint="lg"
-      collapsedWidth="0">
-        <div>LOGO HERE</div>
-        <Menu theme="dark" mode="inline" defaultSelectedKeys={['4']}>
-          <Menu.Item key="1" icon={<UserOutlined />}>
-            nav 1
-          </Menu.Item>
-          <Menu.Item key="2" icon={<VideoCameraOutlined />}>
-            nav 2
-          </Menu.Item>
-          <Menu.Item key="3" icon={<UploadOutlined />}>
-            nav 3
-          </Menu.Item>
-          <Menu.Item key="4" icon={<UserOutlined />}>
-            nav 4
-          </Menu.Item>
+    <AntDLayout className="layout">
+      <Header>
+        <div className="logo" />
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['2']}>
+          {arr.map(item => (
+            <Menu.Item key={item}>
+              <a href="https://www.google.com">navigation {item}</a>
+            </Menu.Item>
+          ))}
         </Menu>
-      </Sider>
+      </Header>
+      <Content style={{ padding: '0 50px' }}>
+        <Breadcrumb style={{ margin: '16px 0' }}>
+          <Breadcrumb.Item>Home</Breadcrumb.Item>
+          <Breadcrumb.Item>List</Breadcrumb.Item>
+          <Breadcrumb.Item>App</Breadcrumb.Item>
+        </Breadcrumb>
+        <div className="site-layout-content">Content</div>
+      </Content>
+      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
     </AntDLayout>
   );
 }
