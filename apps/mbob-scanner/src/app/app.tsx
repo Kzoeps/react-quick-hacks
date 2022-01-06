@@ -6,7 +6,9 @@ import { Layout } from '@react-quick-hacks/layout';
 export function App() {
   return (
     <>
-      <Layout/>
+      <Layout>
+        <Button type="primary" ghost>Hello</Button>
+      </Layout>
     </>
 
   );
