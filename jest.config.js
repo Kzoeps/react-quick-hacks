@@ -4,5 +4,6 @@ module.exports = {
     '<rootDir>/libs/ui-kit',
     '<rootDir>/libs/layout',
     '<rootDir>/libs/auth',
+    '<rootDir>/libs/shared',
   ],
 };

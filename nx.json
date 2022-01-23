@@ -32,6 +32,9 @@
       "tags": [],
       "implicitDependencies": ["mbob-scanner"]
     },
+    "shared": {
+      "tags": []
+    },
     "ui-kit": {
       "tags": []
     }
