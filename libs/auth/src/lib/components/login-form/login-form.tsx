@@ -1,17 +1,18 @@
 import './login-form.module.scss';
 import { Button, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
+import { GenericFunction } from '@react-quick-hacks/shared';
 
-/* eslint-disable-next-line */
 export interface LoginFormProps {
-  onSubmit:
+  onSubmit: GenericFunction;
+  buttonLabel?: string
 }
 
-export function LoginForm(props: LoginFormProps) {
+export function LoginForm({onSubmit, buttonLabel = 'Generate OTP'}: LoginFormProps) {
   return (
     <div>
       <Input placeholder="Phone Number" type="number" prefix={<UserOutlined/>}/>
-      <Button type="primary">Generate OTP</Button>
+      <Button type="primary" onClick={onSubmit}>{buttonLabel}</Button>
     </div>
   );
 }

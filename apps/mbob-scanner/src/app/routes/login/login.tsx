@@ -8,9 +8,10 @@ export interface LoginProps {
 }
 
 export function Login(props: LoginProps) {
+  const temp = () => console.log('ufsl');
   return (
     <>
-      <LoginForm/>
+      <LoginForm onSubmit={temp}/>
     </>
   );
 }
