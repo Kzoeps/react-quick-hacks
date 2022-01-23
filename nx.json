@@ -19,6 +19,9 @@
     }
   },
   "projects": {
+    "auth": {
+      "tags": []
+    },
     "layout": {
       "tags": []
     },

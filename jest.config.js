@@ -3,5 +3,6 @@ module.exports = {
     '<rootDir>/apps/mbob-scanner',
     '<rootDir>/libs/ui-kit',
     '<rootDir>/libs/layout',
+    '<rootDir>/libs/auth',
   ],
 };
