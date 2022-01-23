@@ -1,8 +1,8 @@
 import './layout.module.scss';
 import { Button, Layout as AntDLayout, Menu } from 'antd';
-import React, { ReactElement, useState } from 'react';
-import HktDrawer from './components/hkt-drawer/hkt-drawer';
+import { ReactElement, useState } from 'react';
 import { MenuUnfoldOutlined } from '@ant-design/icons';
+import HktDrawer from './components/hkt-drawer/hkt-drawer';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {
