@@ -1,5 +1,5 @@
+import React from 'react';
 import './login.module.scss';
-import Shell from '../../shell/shell';
 
 /* eslint-disable-next-line */
 export interface LoginProps {}
