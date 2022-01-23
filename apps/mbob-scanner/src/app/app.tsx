@@ -1,16 +1,21 @@
 import './app.module.scss';
-import { Button } from 'antd';
 import React from 'react';
-import { Layout } from '@react-quick-hacks/layout';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { Login } from './routes/login/login';
 import Shell from './shell/shell';
-import Login from './routes/login/login';
+
 
 export function App() {
   return (
     <>
-      <Shell>
-        <p>Soy dora</p>
-      </Shell>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Shell/>}>
+            <Route path="login" element={<Login/>}/>
+            <Route path="" element={<Login/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
 
   );
