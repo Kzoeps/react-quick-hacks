@@ -25,6 +25,8 @@
         "*.jsx"
       ],
       "rules": {
+//        turned off for now dont know how to config this for library inputs
+        "import/no-unresolved": "off",
         "import/extensions": [
           "error", "ignorePackages", {
             "js": "never",
