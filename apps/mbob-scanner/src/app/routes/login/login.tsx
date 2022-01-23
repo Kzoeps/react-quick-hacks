@@ -1,4 +1,3 @@
-import React from 'react';
 import './login.module.scss';
 
 /* eslint-disable-next-line */
