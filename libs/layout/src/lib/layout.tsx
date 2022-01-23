@@ -22,8 +22,10 @@ export function Layout({children}: LayoutProps) {
       <Header>
         <div className='logo' />
         <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
-          <Menu.Item>
+          <Menu.Item key='navigation-button'>
             <Button shape='circle' icon={<MenuUnfoldOutlined />} onClick={() => setShowDrawer(true)} ghost />
+          </Menu.Item>
+          <Menu.Item key='navigation'>
             <HktDrawer showDrawer={showDrawer} onDrawerClose={onDrawerClose} />
           </Menu.Item>
         </Menu>
