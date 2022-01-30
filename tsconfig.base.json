@@ -16,7 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@react-quick-hacks/auth": ["libs/auth-container/auth/src/index.ts"],
-      "@react-quick-hacks/firebase-auth": ["libs/auth-container/firebase-auth/src/index.ts"],
+      "@react-quick-hacks/firebase-auth": [
+        "libs/auth-container/firebase-auth/src/index.ts"
+      ],
       "@react-quick-hacks/layout": ["libs/layout/src/index.ts"],
       "@react-quick-hacks/shared": ["libs/shared/src/index.ts"],
       "@react-quick-hacks/ui-kit": ["libs/ui-kit/src/index.ts"]

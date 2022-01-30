@@ -1,6 +1,4 @@
 import './login.module.scss';
-import { Button, Input } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import { LoginForm } from '@react-quick-hacks/auth';
 
 /* eslint-disable-next-line */
