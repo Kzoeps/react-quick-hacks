@@ -14,7 +14,8 @@ export function LoginForm({ onSubmit, buttonLabel = 'Generate OTP' }: LoginFormP
   const initialVals = {
     phoneNumber: ''
   }
-  return (
+  return
+  (
     <div>
       <Formik initialValues={initialVals} onSubmit={(values) => {console.log(values)}}>
         <Form>
