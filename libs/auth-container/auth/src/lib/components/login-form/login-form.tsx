@@ -3,21 +3,30 @@ import { Button, Input } from 'antd';
 import { UserOutlined } from '@ant-design/icons';
 import { GenericFunction } from '@react-quick-hacks/shared';
 import { HacketInput } from '@react-quick-hacks/ui-kit';
+import { Formik, Form } from 'formik';
 
 export interface LoginFormProps {
   onSubmit: GenericFunction;
-  buttonLabel?: string
+  buttonLabel?: string;
 }
 
-export function LoginForm({onSubmit, buttonLabel = 'Generate OTP'}: LoginFormProps) {
+export function LoginForm({ onSubmit, buttonLabel = 'Generate OTP' }: LoginFormProps) {
+  const initialVals = {
+    phoneNumber: ''
+  }
   return (
     <div>
-      <HacketInput
-        label="Phone Number"
-        name="phoneNumber"
-      />
-      <Input placeholder="Phone Number" type="number" prefix={<UserOutlined/>}/>
-      <Button type="primary" onClick={onSubmit}>{buttonLabel}</Button>
+      <Formik initialValues={initialVals} onSubmit={(values) => {console.log(values)}}>
+        <Form>
+          <HacketInput
+            placeholder='Phone Number'
+            prefix={<UserOutlined />}
+            type='number'
+            name='phoneNumber'
+          />
+          <Button htmlType='submit' type='primary'>{buttonLabel}</Button>
+        </Form>
+      </Formik>
     </div>
   );
 }
