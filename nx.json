@@ -22,6 +22,9 @@
     "auth": {
       "tags": []
     },
+    "firebase-auth": {
+      "tags": []
+    },
     "layout": {
       "tags": []
     },

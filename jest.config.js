@@ -5,5 +5,6 @@ module.exports = {
     '<rootDir>/libs/layout',
     '<rootDir>/libs/auth',
     '<rootDir>/libs/shared',
+    '<rootDir>/libs/firebase-auth',
   ],
 };
