@@ -11,6 +11,7 @@ export function Login(props: LoginProps) {
   const verifyPhone = usePhoneVerify(app);
   const temp = async () => {
     await verifyPhone.sendVerification('+97517123456')
+    await verifyPhone.verifyOtp('123456');
   }
   return (
     <>
