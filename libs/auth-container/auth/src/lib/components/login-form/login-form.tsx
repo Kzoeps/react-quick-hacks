@@ -1,20 +1,27 @@
 import './login-form.module.scss';
-import { Button, Input } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
-import { GenericFunction } from '@react-quick-hacks/shared';
+import { Button } from 'antd';
+import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { HacketInput } from '@react-quick-hacks/ui-kit';
-import { Formik, Form, FormikValues } from 'formik';
+import { Form, Formik } from 'formik';
 import { PHONE_NUMBER_INITIAL_VALUES } from '../../models';
+import { PhoneOtpFormValues } from '../../models/models';
 
 export interface LoginFormProps {
-  onSubmit: (values: { phoneNumber: string} ) => void;
+  onSubmit: (values: PhoneOtpFormValues) => void;
+  formInitialValues?: PhoneOtpFormValues;
   buttonLabel?: string;
+  showOtpEntry?: boolean;
 }
 
-export function LoginForm({ onSubmit, buttonLabel = 'Generate OTP' }: LoginFormProps) {
+export function LoginForm({
+                            onSubmit,
+                            buttonLabel = 'Generate OTP',
+                            formInitialValues = PHONE_NUMBER_INITIAL_VALUES,
+                            showOtpEntry = false
+                          }: LoginFormProps) {
   return (
     <div>
-      <Formik initialValues={PHONE_NUMBER_INITIAL_VALUES} onSubmit={onSubmit}>
+      <Formik initialValues={formInitialValues} onSubmit={onSubmit}>
         <Form>
           <HacketInput
             placeholder='Phone Number'
@@ -22,6 +29,7 @@ export function LoginForm({ onSubmit, buttonLabel = 'Generate OTP' }: LoginFormP
             type='number'
             name='phoneNumber'
           />
+          {showOtpEntry && <HacketInput name='otp' placeholder='OTP' type='number' prefix={<LockOutlined />} />}
           <Button htmlType='submit' type='primary'>{buttonLabel}</Button>
         </Form>
       </Formik>
