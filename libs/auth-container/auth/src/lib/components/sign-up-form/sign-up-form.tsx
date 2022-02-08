@@ -1,4 +1,3 @@
-import React from 'react';
 import { Form, Formik } from 'formik';
 import './sign-up-form.module.scss';
 import { HacketInput } from '@react-quick-hacks/ui-kit';
