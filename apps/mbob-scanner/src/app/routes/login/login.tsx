@@ -1,8 +1,8 @@
 import './login.module.scss';
 import { LoginForm, PhoneOtpFormValues } from '@react-quick-hacks/auth';
 import { usePhoneVerify } from '@react-quick-hacks/firebase-auth';
-import app from '../../firebase-config';
 import { useEffect, useState } from 'react';
+import app from '../../firebase-config';
 
 /* eslint-disable-next-line */
 export interface LoginProps {
