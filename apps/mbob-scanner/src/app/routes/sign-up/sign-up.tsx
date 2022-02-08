@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import style from './sign-up.module.scss';
 import { SignUpForm } from '@react-quick-hacks/auth';
+import style from './sign-up.module.scss';
 
 /* eslint-disable-next-line */
 export interface SignUpProps {}

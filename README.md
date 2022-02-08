@@ -23,6 +23,9 @@
     - list of all the transactions
       - filter (date)
       - pagination
+  - **TODOS**
+    - [ ] add loaders
+    - [ ] add schema validation to auth forms
   - **Extras**
     - profile page
     - dashboard page, (stats and all)
