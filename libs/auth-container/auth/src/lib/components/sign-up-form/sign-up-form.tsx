@@ -3,6 +3,7 @@ import { Form, Formik } from 'formik';
 import './sign-up-form.module.scss';
 import { HacketInput } from '@react-quick-hacks/ui-kit';
 import { UserOutlined } from '@ant-design/icons';
+import { Button } from 'antd';
 
 /* eslint-disable-next-line */
 export interface SignUpFormProps {}
@@ -17,7 +18,7 @@ export function SignUpForm(props: SignUpFormProps) {
     <div>
       <Formik
       initialValues={initialValues}
-      onSubmit={console.log}>
+      onSubmit={(vals) => console.log(vals)}>
         <Form>
           <HacketInput
             placeholder='Phone Number'
@@ -31,9 +32,10 @@ export function SignUpForm(props: SignUpFormProps) {
             prefix={<UserOutlined />}
           />
           <HacketInput
-            name="dzongkhag"
-            placeholder="Dzongkhag"
-            prefix={<UserOutlined />}/>
+            name='dzongkhag'
+            placeholder='Dzongkhag'
+            prefix={<UserOutlined />} />
+          <Button htmlType='submit' type='primary' >Generate</Button>
         </Form>
       </Formik>
     </div>
