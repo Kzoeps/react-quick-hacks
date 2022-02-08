@@ -6,7 +6,8 @@ import { UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 /* eslint-disable-next-line */
-export interface SignUpFormProps {}
+export interface SignUpFormProps {
+}
 
 export function SignUpForm(props: SignUpFormProps) {
   const initialValues = {
@@ -25,11 +26,13 @@ export function SignUpForm(props: SignUpFormProps) {
             prefix={<UserOutlined />}
             type='number'
             name='phoneNumber'
+            disabled
           />
           <HacketInput
             name="name"
             placeholder="Name"
             prefix={<UserOutlined />}
+            disabled
           />
           <HacketInput
             name='dzongkhag'
