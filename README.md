@@ -2,11 +2,31 @@
 
 # ReactQuickHacks
 
-This project was generated using [Nx](https://nx.dev).
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
-
-🔎 **Smart, Extensible Build Framework**
+## Requirements
+- **Auth**
+  - ~~login using phone verification (Firebase)~~
+  - signup using phone verification (pick up extra fields, location, name etc)
+    - location
+    - phone number
+    - shop name
+- **CORE** 
+  - take a picture functionality
+  - read picture using either *TesseractJS/Google Vision API*
+  - get picture details and then fill up the basic form
+    - form will consist of:
+      - journal number
+      - amount
+      - date
+      - sender mobile number
+      - remarks
+  - **Dashboard**
+    - list of all the transactions
+      - filter (date)
+      - pagination
+  - **Extras**
+    - profile page
+    - dashboard page, (stats and all)
+    - 
 
 ## Adding capabilities to your workspace
 
