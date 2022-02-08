@@ -2,7 +2,7 @@ import React from 'react';
 import { Form, Formik } from 'formik';
 import './sign-up-form.module.scss';
 import { HacketInput } from '@react-quick-hacks/ui-kit';
-import { UserOutlined } from '@ant-design/icons';
+import { HomeTwoTone, PhoneTwoTone, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
 /* eslint-disable-next-line */
@@ -23,7 +23,7 @@ export function SignUpForm(props: SignUpFormProps) {
         <Form>
           <HacketInput
             placeholder='Phone Number'
-            prefix={<UserOutlined />}
+            prefix={<PhoneTwoTone />}
             type='number'
             name='phoneNumber'
             disabled
@@ -37,7 +37,7 @@ export function SignUpForm(props: SignUpFormProps) {
           <HacketInput
             name='dzongkhag'
             placeholder='Dzongkhag'
-            prefix={<UserOutlined />} />
+            prefix={<HomeTwoTone />} />
           <Button htmlType='submit' type='primary' >Generate</Button>
         </Form>
       </Formik>
