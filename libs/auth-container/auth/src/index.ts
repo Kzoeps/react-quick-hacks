@@ -1,3 +1,3 @@
-export * from './lib/components/login-form/login-form';
+export * from './lib/components/index';
 export * from './lib/auth';
 export * from './lib/models';

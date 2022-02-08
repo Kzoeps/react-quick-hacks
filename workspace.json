@@ -2,8 +2,8 @@
   "version": 2,
   "projects": {
     "auth": {
-      "root": "libs/auth",
-      "sourceRoot": "libs/auth/src",
+      "root": "libs/auth-container/auth",
+      "sourceRoot": "libs/auth-container/auth/src",
       "projectType": "library",
       "targets": {
         "lint": {
@@ -23,8 +23,8 @@
       }
     },
     "firebase-auth": {
-      "root": "libs/firebase-auth",
-      "sourceRoot": "libs/firebase-auth/src",
+      "root": "libs/auth-container/firebase-auth",
+      "sourceRoot": "libs/auth-container/firebase-auth/src",
       "projectType": "library",
       "targets": {
         "lint": {
