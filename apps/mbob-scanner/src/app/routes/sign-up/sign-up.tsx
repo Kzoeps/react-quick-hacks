@@ -9,7 +9,6 @@ export function SignUp(props: SignUpProps) {
   const [showOtp, setShowOtp] = useState(false);
   return (
     <div>
-      <h1>Welcome to sign-up!</h1>
       <SignUpForm/>
     </div>
   );
