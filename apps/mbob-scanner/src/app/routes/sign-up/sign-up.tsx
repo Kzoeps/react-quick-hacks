@@ -1,5 +1,5 @@
-import './sign-up.module.scss';
 import { useState } from 'react';
+import style from './sign-up.module.scss';
 
 /* eslint-disable-next-line */
 export interface SignUpProps {}
