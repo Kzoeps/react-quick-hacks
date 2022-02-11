@@ -2,4 +2,5 @@
 export enum RoutesEnum {
   login = 'login',
   signUp = 'sign-up',
+  dashboard = 'dashboard'
 }

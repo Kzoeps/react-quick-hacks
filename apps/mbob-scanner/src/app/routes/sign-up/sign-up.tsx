@@ -4,6 +4,8 @@ import { usePhoneVerify } from '@react-quick-hacks/firebase-auth';
 import { getFirestore, doc, setDoc } from "firebase/firestore"
 import { appendBhtCode, NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
 import app from '../../firebase-config';
+import { useNavigate } from 'react-router-dom';
+import { RoutesEnum } from '../../enums/routes-enum';
 
 /* eslint-disable-next-line */
 export interface SignUpProps {}
@@ -13,6 +15,7 @@ export function SignUp(props: SignUpProps) {
   const DISABLED_CONTROLS: SignUpControlNames[] = ['phoneNumber', 'name', 'dzongkhag'];
   const verifyPhone = usePhoneVerify(app);
   const db = getFirestore(app);
+  const navigate = useNavigate();
   const generateOtp = async (signUpForm: SignUpFormValues) => {
     const { phoneNumber } = signUpForm;
     await verifyPhone.sendVerification(`+975${phoneNumber}`);
@@ -36,6 +39,7 @@ export function SignUp(props: SignUpProps) {
         if (signedIn) {
           await setUpUserProfile(signUpForm);
           showNotification('Thanks for signing up', NotificationTypeEnum.Success);
+          navigate(`/${RoutesEnum.dashboard}`, {replace: true});
         }
       }
     } catch (e) {

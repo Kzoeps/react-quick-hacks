@@ -23,6 +23,7 @@ export function FirebaseAuthContext({app, children}: FirebaseAuthContextProps) {
   useEffect(() => {
     if (!listenerSetUp) {
       const auth = getAuth(app);
+      console.log('listener set up')
       onAuthStateChanged(auth, (user) => {
         if (user) {
           setContextState({
