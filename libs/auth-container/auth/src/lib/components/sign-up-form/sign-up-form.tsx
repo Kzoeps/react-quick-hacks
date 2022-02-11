@@ -4,13 +4,16 @@ import { HacketSelect, HacketInput } from '@react-quick-hacks/ui-kit';
 import { HomeTwoTone, PhoneTwoTone, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { DZONGKHAG_OPTIONS } from '@react-quick-hacks/shared';
+import { SignUpFormValues } from '../../models';
 
 /* eslint-disable-next-line */
 export interface SignUpFormProps {
+  onSubmit: (values: SignUpFormValues) => void;
+  controlsToDisable?: ('phoneNumber' | 'name' | 'dzongkhag')[] ;
 }
 
-export function SignUpForm(props: SignUpFormProps) {
-  const initialValues = {
+export function SignUpForm({controlsToDisable = [], onSubmit}: SignUpFormProps) {
+  const initialValues: SignUpFormValues = {
     phoneNumber: '',
     name: '',
     dzongkhag:''
@@ -19,22 +22,25 @@ export function SignUpForm(props: SignUpFormProps) {
     <div>
       <Formik
       initialValues={initialValues}
-      onSubmit={(vals) => console.log(vals)}>
+      onSubmit={onSubmit}>
         <Form>
           <HacketInput
             placeholder='Phone Number'
             prefix={<PhoneTwoTone />}
             type='number'
             name='phoneNumber'
+            disabled={controlsToDisable.includes('phoneNumber')}
           />
           <HacketInput
             name="name"
             placeholder="Name"
             prefix={<UserOutlined />}
+            disabled={controlsToDisable.includes('name')}
           />
           <HacketSelect
             name="dzongkhag"
             validate={undefined}
+            disabled={controlsToDisable.includes('dzongkhag')}
             placeholder="Dzongkhag"
             options={DZONGKHAG_OPTIONS}
             />
