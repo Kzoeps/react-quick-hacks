@@ -21,12 +21,12 @@ export function Login(props: LoginProps) {
   };
   const verifyOtp = async ({ phoneNumber, otp }: PhoneOtpFormValues) => {
     if (otp) await verifyPhone.verifyOtp(otp);
+    navigate(`/${RoutesEnum.dashboard}`, {replace: true});
   };
 
   const handleLogin = async (formValues: PhoneOtpFormValues) => {
     if (showOtp) await verifyOtp(formValues);
     else await generateOtp(formValues);
-    navigate(RoutesEnum.dashboard, {replace: true});
   };
 
   useEffect(() => () => {
