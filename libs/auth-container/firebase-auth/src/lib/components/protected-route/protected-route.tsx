@@ -9,7 +9,7 @@ export interface ProtectedRouteProps {
 
 export const ProtectedRoute = ({children, redirectPath}: ProtectedRouteProps) => {
   const auth = useContext<AuthContextInfo>(AuthContext);
-  const token: string = localStorage.getItem('token');
+  const token = localStorage.getItem('token');
   const location = useLocation();
   if (!(auth.currentUser || token)) {
     return <Navigate to={redirectPath} state={{from: location}} replace/>

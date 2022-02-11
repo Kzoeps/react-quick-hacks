@@ -128,3 +128,7 @@
   width: 16px;
   margin-right: 4px;
 }
+
+.app :global(.flex) {
+  display: flex;
+}
