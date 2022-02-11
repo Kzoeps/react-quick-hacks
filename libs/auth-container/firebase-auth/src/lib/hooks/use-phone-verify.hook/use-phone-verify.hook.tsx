@@ -8,7 +8,7 @@ import NotificationTypeEnum from '../../enums/firebase-auth.enum';
 
 export interface UsePhoneVerify {
   sendVerification: (phoneNumber: string) => Promise<void>;
-  verifyOtp: (otp: string) => Promise<void>;
+  verifyOtp: (otp: string) => Promise<boolean>;
 }
 
 export function usePhoneVerify(app: FirebaseApp): UsePhoneVerify {
@@ -51,16 +51,19 @@ export function usePhoneVerify(app: FirebaseApp): UsePhoneVerify {
     }
   };
 
-  const verifyOtp = async (otp: string): Promise<void> => {
+  const verifyOtp = async (otp: string): Promise<boolean> => {
     if (confirmationResult.current) {
       try {
         await confirmationResult.current?.confirm(otp);
         showNotification('Verification Successful', NotificationTypeEnum.Success);
+        return true;
       } catch (error) {
         showNotification(error.message, NotificationTypeEnum.Error);
+        return false;
       }
     } else {
       showNotification('Oops something went wrong', NotificationTypeEnum.Error);
+      return false;
     }
   };
 
