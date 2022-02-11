@@ -1,6 +1,6 @@
 import { Form, Formik } from 'formik';
 import './sign-up-form.module.scss';
-import { HacketInput } from '@react-quick-hacks/ui-kit';
+import { HacketSelect, HacketInput } from '@react-quick-hacks/ui-kit';
 import { HomeTwoTone, PhoneTwoTone, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 
@@ -33,6 +33,12 @@ export function SignUpForm(props: SignUpFormProps) {
             prefix={<UserOutlined />}
             disabled
           />
+          <HacketSelect
+            name="dzongkhag"
+            validate={undefined}
+            placeholder="Dzongkhag"
+            options={[{label:'hello', value: 'moto'}]}
+            />
           <HacketInput
             name='dzongkhag'
             placeholder='Dzongkhag'
