@@ -25,8 +25,9 @@
       - pagination
   - **TODOS**
     - [ ] add loaders
+    - [x] dashboard list
     - [x] create auth context
-    - [ ] create protected routes
+    - [x] create protected routes
     - [ ] add schema validation to auth forms
   - **Extras**
     - profile page
