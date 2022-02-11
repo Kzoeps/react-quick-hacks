@@ -1,16 +1,18 @@
 import './item-box.module.scss';
+import { ScanOutlined } from '@ant-design/icons';
 
 /* eslint-disable-next-line */
 export interface ItemBoxProps<T> {
   label: string;
-  icon?: string;
+  icon?: JSX.Element;
   value?: T;
   onBoxClick?: (value: T | string) => void;
 }
 
-export function ItemBox<T>({label, value, onBoxClick = (val) => undefined,  ...props}: ItemBoxProps<T>) {
+export function ItemBox<T>({icon, label, value, onBoxClick = (val) => undefined,  ...props}: ItemBoxProps<T>) {
   return (
     <div onClick={() => onBoxClick(value || label)}>
+      {icon || undefined}
       <p>
         {label}
       </p>
