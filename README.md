@@ -5,10 +5,10 @@
 ## Requirements
 - **Auth**
   - ~~login using phone verification (Firebase)~~
-  - signup using phone verification (pick up extra fields, location, name etc)
-    - location
-    - phone number
-    - shop name
+  - ~~signup using phone verification (pick up extra fields, location, name etc)~~
+    - ~~location~~
+    - ~~phone number~~
+    - ~~shop name~~
 - **CORE** 
   - take a picture functionality
   - read picture using either *TesseractJS/Google Vision API*
@@ -25,6 +25,8 @@
       - pagination
   - **TODOS**
     - [ ] add loaders
+    - [x] create auth context
+    - [ ] create protected routes
     - [ ] add schema validation to auth forms
   - **Extras**
     - profile page
