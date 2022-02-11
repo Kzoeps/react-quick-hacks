@@ -1,13 +1,13 @@
 import './app.module.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { FirebaseAuthContext } from '@react-quick-hacks/firebase-auth';
+import { ProtectedRoute, FirebaseAuthContext } from '@react-quick-hacks/firebase-auth';
+import { createWorker } from 'tesseract.js';
+import { useEffect, useState } from 'react';
 import { RoutesEnum } from './enums/routes-enum';
 import { Login, SignUp } from './routes';
 import Shell from './shell/shell';
 import Dashboard from './routes/dashboard/dashboard';
 import app from './firebase-config';
-import ProtectedRoute
-  from '../../../../libs/auth-container/firebase-auth/src/lib/components/protected-route/protected-route';
 
 export function App() {
   return (
