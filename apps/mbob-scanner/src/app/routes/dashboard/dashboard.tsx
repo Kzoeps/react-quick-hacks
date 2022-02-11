@@ -2,6 +2,7 @@ import { DatabaseTwoTone, FileAddTwoTone, ScanOutlined } from '@ant-design/icons
 import { HacketUpload } from '@react-quick-hacks/ui-kit';
 import { useEffect, useState } from 'react';
 import { UploadFileStatus } from 'antd/es/upload/interface';
+import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
 import useTesseract from '../../hooks/useTesseract';
 
@@ -10,6 +11,7 @@ export interface DashboardProps {}
 
 export function Dashboard(props: DashboardProps) {
   const [uploadStatus, setUploadStatus] = useState<UploadFileStatus | undefined>(undefined);
+  const navigate = useNavigate();
   const tesseract = useTesseract({});
   useEffect(() => {
     tesseract.loadWorker();

@@ -1,4 +1,4 @@
-import { createWorker } from 'tesseract.js';
+import { createWorker, Worker } from 'tesseract.js';
 import { NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
 import { useEffect } from 'react';
 
@@ -11,8 +11,8 @@ export interface UseTesseractProps{
 
 }
 export const useTesseract = (props: UseTesseractProps): TesseractOptions => {
-  const worker = createWorker({
-    logger: m => console.log(m),
+  const worker: Worker = createWorker({
+    logger: m => console.log(m)
   });
 
   const loadWorker = async (): Promise<void> => {
@@ -36,7 +36,7 @@ export const useTesseract = (props: UseTesseractProps): TesseractOptions => {
   }
   useEffect(() => () => {
     // eslint-disable-next-line no-void
-    void worker.terminate();
+    worker.terminate().then((result) => undefined);
   }, [worker])
 
   return {
