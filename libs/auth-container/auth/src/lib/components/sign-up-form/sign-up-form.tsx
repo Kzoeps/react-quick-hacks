@@ -3,6 +3,7 @@ import './sign-up-form.module.scss';
 import { HacketSelect, HacketInput } from '@react-quick-hacks/ui-kit';
 import { HomeTwoTone, PhoneTwoTone, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
+import { DZONGKHAG_OPTIONS } from '@react-quick-hacks/shared';
 
 /* eslint-disable-next-line */
 export interface SignUpFormProps {
@@ -25,24 +26,19 @@ export function SignUpForm(props: SignUpFormProps) {
             prefix={<PhoneTwoTone />}
             type='number'
             name='phoneNumber'
-            disabled
           />
           <HacketInput
             name="name"
             placeholder="Name"
             prefix={<UserOutlined />}
-            disabled
           />
           <HacketSelect
             name="dzongkhag"
             validate={undefined}
             placeholder="Dzongkhag"
-            options={[{label:'hello', value: 'moto'}]}
+            options={DZONGKHAG_OPTIONS}
             />
-          <HacketInput
-            name='dzongkhag'
-            placeholder='Dzongkhag'
-            prefix={<HomeTwoTone />} />
+          <br/>
           <Button htmlType='submit' type='primary' >Generate</Button>
         </Form>
       </Formik>
