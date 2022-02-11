@@ -1,7 +1,7 @@
 import { Form, Formik } from 'formik';
 import './sign-up-form.module.scss';
 import { HacketSelect, HacketInput } from '@react-quick-hacks/ui-kit';
-import { HomeTwoTone, PhoneTwoTone, UserOutlined } from '@ant-design/icons';
+import { HomeTwoTone, LockOutlined, PhoneTwoTone, UserOutlined } from '@ant-design/icons';
 import { Button } from 'antd';
 import { DZONGKHAG_OPTIONS } from '@react-quick-hacks/shared';
 import { SignUpFormValues } from '../../models';
@@ -12,9 +12,10 @@ export type SignUpControlNames = 'phoneNumber' | 'name' | 'dzongkhag'
 export interface SignUpFormProps {
   onSubmit: (values: SignUpFormValues) => void;
   controlsToDisable?: SignUpControlNames[] ;
+  showOtpEntry?: boolean;
 }
 
-export function SignUpForm({controlsToDisable = [], onSubmit}: SignUpFormProps) {
+export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = false}: SignUpFormProps) {
   const initialValues: SignUpFormValues = {
     phoneNumber: '',
     name: '',
@@ -47,6 +48,7 @@ export function SignUpForm({controlsToDisable = [], onSubmit}: SignUpFormProps) 
             options={DZONGKHAG_OPTIONS}
             />
           <br/>
+          {showOtpEntry && <HacketInput name='otp' placeholder='OTP' type='number' prefix={<LockOutlined />} />}
           <Button htmlType='submit' type='primary' >Generate</Button>
         </Form>
       </Formik>

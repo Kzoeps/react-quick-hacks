@@ -1,15 +1,21 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { SignUpControlNames, SignUpForm, SignUpFormValues } from '@react-quick-hacks/auth';
+import { usePhoneVerify } from '@react-quick-hacks/firebase-auth';
 import style from './sign-up.module.scss';
+import app from '../../firebase-config';
 
 /* eslint-disable-next-line */
 export interface SignUpProps {}
 
 export function SignUp(props: SignUpProps) {
   const [showOtp, setShowOtp] = useState(false);
+  const userProfile = useRef<SignUpFormValues>();
   const DISABLED_CONTROLS: SignUpControlNames[] = ['phoneNumber', 'name', 'dzongkhag'];
-  const generateOtp = (signUpForm: SignUpFormValues) => {
-    console.log(signUpForm);
+  const verifyPhone = usePhoneVerify(app);
+  const generateOtp = async (signUpForm: SignUpFormValues) => {
+    const { phoneNumber } = signUpForm;
+    userProfile.current = signUpForm;
+    await  verifyPhone.sendVerification(`+975${phoneNumber}`);
     setShowOtp(true);
   };
 
@@ -17,9 +23,10 @@ export function SignUp(props: SignUpProps) {
     console.log(signUpForm);
   };
   return (
-    <div>
-      <SignUpForm onSubmit={showOtp ? verifyOtp :generateOtp} controlsToDisable={showOtp ? DISABLED_CONTROLS : []}/>
-    </div>
+    <>
+      <SignUpForm onSubmit={showOtp ? verifyOtp :generateOtp} showOtpEntry={showOtp} controlsToDisable={showOtp ? DISABLED_CONTROLS : []}/>
+      <div id='recaptcha-container' />
+    </>
   );
 }
 

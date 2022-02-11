@@ -11,10 +11,6 @@ export interface LoginProps {
 export function Login(props: LoginProps) {
   const [showOtp, setShowOtp] = useState<boolean>(false);
   const verifyPhone = usePhoneVerify(app);
-  const temp = async () => {
-    await verifyPhone.sendVerification('+97517123456');
-    await verifyPhone.verifyOtp('123456');
-  };
 
   const generateOtp = async ({ phoneNumber }: PhoneOtpFormValues) => {
     await verifyPhone.sendVerification(`+975${phoneNumber}`);
