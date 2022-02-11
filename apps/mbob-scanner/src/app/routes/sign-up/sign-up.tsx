@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { SignUpControlNames, SignUpForm, SignUpFormValues } from '@react-quick-hacks/auth';
 import { usePhoneVerify } from '@react-quick-hacks/firebase-auth';
 import { getFirestore, doc, setDoc } from "firebase/firestore"
-import { appendBhtCode } from '@react-quick-hacks/shared';
+import { appendBhtCode, NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
 import app from '../../firebase-config';
 
 /* eslint-disable-next-line */
@@ -19,6 +19,14 @@ export function SignUp(props: SignUpProps) {
     setShowOtp(true);
   };
 
+  const setUpUserProfile = async (signUpForm: SignUpFormValues) => {
+    const { phoneNumber, name, dzongkhag } = signUpForm;
+    await setDoc(doc(db, 'users', appendBhtCode(phoneNumber as string)), {
+      phoneNumber,
+      name,
+      dzongkhag
+    })
+  };
 
   const verifyOtp = async (signUpForm: SignUpFormValues) => {
     try {
@@ -26,16 +34,12 @@ export function SignUp(props: SignUpProps) {
       if (otp) {
         const signedIn = await verifyPhone.verifyOtp(otp)
         if (signedIn) {
-          const { phoneNumber, name, dzongkhag } = signUpForm;
-          await setDoc(doc(db, 'users', appendBhtCode(phoneNumber as string)), {
-            phoneNumber,
-            name,
-            dzongkhag
-          })
+          await setUpUserProfile(signUpForm);
+          showNotification('Thanks for signing up', NotificationTypeEnum.Success);
         }
       }
     } catch (e) {
-      console.log(e);
+      showNotification(e.message, NotificationTypeEnum.Error);
     }
   };
   return (
