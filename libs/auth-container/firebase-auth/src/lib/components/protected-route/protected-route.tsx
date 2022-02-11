@@ -11,6 +11,7 @@ export const ProtectedRoute = ({children, redirectPath}: ProtectedRouteProps) =>
   const auth = useContext(AuthContext);
   const location = useLocation();
   console.log(location);
+  console.log(auth)
   if (!auth.currentUser) {
     return <Navigate to={redirectPath} state={{from: location}} replace/>
   }

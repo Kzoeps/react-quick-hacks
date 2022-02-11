@@ -6,6 +6,8 @@ import { Login, SignUp } from './routes';
 import Shell from './shell/shell';
 import Dashboard from './routes/dashboard/dashboard';
 import app from './firebase-config';
+import ProtectedRoute
+  from '../../../../libs/auth-container/firebase-auth/src/lib/components/protected-route/protected-route';
 
 export function App() {
   return (
@@ -16,7 +18,11 @@ export function App() {
             <Route path='/' element={<Shell />}>
               <Route path={RoutesEnum.signUp} element={<SignUp />} />
               <Route path={RoutesEnum.login} element={<Login />} />
-              <Route path={RoutesEnum.dashboard} element={<Dashboard />} />
+              <Route path={RoutesEnum.dashboard} element={
+                <ProtectedRoute redirectPath={`/${RoutesEnum.login}`}>
+                  <Dashboard />
+                </ProtectedRoute>
+              } />
               <Route path='' element={<Login />} />
             </Route>
           </Routes>

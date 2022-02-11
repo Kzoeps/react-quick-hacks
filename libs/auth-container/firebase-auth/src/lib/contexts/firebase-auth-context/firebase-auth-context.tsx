@@ -21,25 +21,22 @@ export function FirebaseAuthContext({app, children}: FirebaseAuthContextProps) {
   const [contextState, setContextState] = useState<AuthContextInfo>({ currentUser: undefined, phoneNumber: undefined});
 
   useEffect(() => {
-    if (!listenerSetUp) {
       const auth = getAuth(app);
-      console.log('listener set up')
-      onAuthStateChanged(auth, (user) => {
-        if (user) {
-          setContextState({
-            currentUser: user as unknown as User,
-            phoneNumber: user?.phoneNumber,
-          })
-          setListenerSetUp(true);
-        } else {
-          setContextState({
-            currentUser: undefined,
-            phoneNumber: undefined
-          })
-        }
-      })
-    }
-  }, [listenerSetUp, app])
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setContextState({
+          currentUser: user as unknown as User,
+          phoneNumber: user?.phoneNumber
+        });
+      } else {
+        setContextState({
+          currentUser: undefined,
+          phoneNumber: undefined
+        });
+      }
+    });
+    return () => unsubscribe();
+  }, [app])
   return (
     <AuthContext.Provider value={contextState}>
       {children}
