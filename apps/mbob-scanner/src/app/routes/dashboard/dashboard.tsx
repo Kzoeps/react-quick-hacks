@@ -11,21 +11,32 @@ export interface DashboardProps {}
 
 export function Dashboard(props: DashboardProps) {
   const [uploadStatus, setUploadStatus] = useState<UploadFileStatus | undefined>(undefined);
+  const [showLoader, setShowLoader] = useState<boolean>(false);
   const navigate = useNavigate();
-  const tesseract = useTesseract({});
+  const { loadWorker, readImageText }= useTesseract({});
   useEffect(() => {
-    tesseract.loadWorker();
-  }, [])
+    setShowLoader(true);
+    console.log('inside of tesseract loader');
+    loadWorker().then(() => setShowLoader(false));
+  }, [loadWorker]);
+
+  useEffect(() => () => {
+    setShowLoader(false);
+  },[]);
+
+  if (showLoader) {
+    return <div>Loading...</div>;
+  }
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
-      <HacketUpload accept="image/*"
+      <HacketUpload accept='image/*'
                     customRequest={(file) => {
-                      tesseract.readImageText(file.file as File);
-                      console.log(file)
+                      readImageText(file.file as File);
+                      console.log(file);
                     }} uploadInterface={<ItemBox label='Scan' value='scan'
-                                              icon={<ScanOutlined
-                                                style={{ fontSize: '30px', color: '#1890ff' }} />} />} />
-      <ItemBox label='Records' value='records' icon={<DatabaseTwoTone style={{ fontSize: '30px' }} />} />
+                                                 icon={<ScanOutlined
+                                                   style={{ fontSize: '30px', color: '#1890ff' }} />} />} />
+      <ItemBox onBoxClick={() => navigate('/login')} label='Records' value='records' icon={<DatabaseTwoTone style={{ fontSize: '30px' }} />} />
       <ItemBox label='Add Record' value='new-record' icon={<FileAddTwoTone style={{ fontSize: '30px' }} />} />
     </div>
   );
