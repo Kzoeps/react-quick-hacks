@@ -6,10 +6,12 @@ import { Button } from 'antd';
 import { DZONGKHAG_OPTIONS } from '@react-quick-hacks/shared';
 import { SignUpFormValues } from '../../models';
 
+export type SignUpControlNames = 'phoneNumber' | 'name' | 'dzongkhag'
+
 /* eslint-disable-next-line */
 export interface SignUpFormProps {
   onSubmit: (values: SignUpFormValues) => void;
-  controlsToDisable?: ('phoneNumber' | 'name' | 'dzongkhag')[] ;
+  controlsToDisable?: SignUpControlNames[] ;
 }
 
 export function SignUpForm({controlsToDisable = [], onSubmit}: SignUpFormProps) {
