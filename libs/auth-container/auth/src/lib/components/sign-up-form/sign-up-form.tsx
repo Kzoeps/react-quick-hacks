@@ -11,11 +11,12 @@ export type SignUpControlNames = 'phoneNumber' | 'name' | 'dzongkhag'
 /* eslint-disable-next-line */
 export interface SignUpFormProps {
   onSubmit: (values: SignUpFormValues) => void;
+  buttonLabel?: string;
   controlsToDisable?: SignUpControlNames[] ;
   showOtpEntry?: boolean;
 }
 
-export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = false}: SignUpFormProps) {
+export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = false, buttonLabel='Generate OTP'}: SignUpFormProps) {
   const initialValues: SignUpFormValues = {
     phoneNumber: '',
     name: '',
@@ -49,7 +50,7 @@ export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = fal
             />
           <br/>
           {showOtpEntry && <HacketInput name='otp' placeholder='OTP' type='number' prefix={<LockOutlined />} />}
-          <Button htmlType='submit' type='primary' >Generate</Button>
+          <Button htmlType='submit' type='primary' >{buttonLabel}</Button>
         </Form>
       </Formik>
     </div>

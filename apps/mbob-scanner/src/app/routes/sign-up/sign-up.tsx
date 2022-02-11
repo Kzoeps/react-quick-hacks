@@ -21,7 +21,11 @@ export function SignUp(props: SignUpProps) {
   };
   return (
     <>
-      <SignUpForm onSubmit={showOtp ? verifyOtp :generateOtp} showOtpEntry={showOtp} controlsToDisable={showOtp ? DISABLED_CONTROLS : []}/>
+      <SignUpForm
+        onSubmit={showOtp ? verifyOtp :generateOtp}
+        showOtpEntry={showOtp}
+        buttonLabel={showOtp ? 'Sign Up' : 'Generate OTP'}
+        controlsToDisable={showOtp ? DISABLED_CONTROLS : []}/>
       <div id='recaptcha-container' />
     </>
   );

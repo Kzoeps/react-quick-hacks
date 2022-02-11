@@ -30,7 +30,10 @@ export function Login(props: LoginProps) {
   }, []);
   return (
     <>
-      <LoginForm onSubmit={handleLogin} showOtpEntry={showOtp} buttonLabel={showOtp ? 'Login' : 'Generate Otp'} />
+      <LoginForm
+        onSubmit={handleLogin}
+        showOtpEntry={showOtp}
+        buttonLabel={showOtp ? 'Login' : 'Generate Otp'} />
       <div id='recaptcha-container' />
     </>
   );
