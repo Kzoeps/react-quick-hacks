@@ -4,41 +4,29 @@ import { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
 import useTesseract from '../../hooks/useTesseract';
+import { LoadersReducer, ReducerAction, LoadersAction, LoadersState } from '../../models';
 
 /* eslint-disable-next-line */
 export interface DashboardProps {}
 
-interface LoadersState {
-  isLoading: boolean;
-  isLoadingTesseract: boolean;
-}
-
-export type LoadersAction = 'update-tesseract' | 'update-loader';
-
-interface ReducerAction {
-  type: LoadersAction;
-  payload: boolean;
-}
-
-type LoadersReducer = (state: LoadersState, action: ReducerAction) => LoadersState;
+const loadersReducer = (state: LoadersState , action: ReducerAction): LoadersState => {
+  switch (action.type) {
+    case 'update-tesseract':
+      return {
+        ...state,
+        isLoadingTesseract: action.payload,
+      };
+    case 'update-loader':
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+    default:
+      return state;
+  }
+};
 
 export function Dashboard(props: DashboardProps) {
-  const loadersReducer = (state: LoadersState , action: ReducerAction): LoadersState => {
-    switch (action.type) {
-      case 'update-tesseract':
-        return {
-          ...state,
-          isLoadingTesseract: action.payload,
-        };
-      case 'update-loader':
-        return {
-          ...state,
-          isLoading: action.payload,
-        };
-      default:
-        return state;
-    }
-  };
   const [state, dispatch] = useReducer<LoadersReducer>(loadersReducer, {isLoading: false, isLoadingTesseract: false});
   const navigate = useNavigate();
   const { readImageText } = useTesseract({dispatch});
