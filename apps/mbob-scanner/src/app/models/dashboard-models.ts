@@ -11,3 +11,10 @@ export interface ReducerAction {
 }
 
 export type LoadersReducer = (state: LoadersState, action: ReducerAction) => LoadersState;
+
+export interface TransactionRawDetails {
+  transactionAmount: string,
+  journalNumber: string,
+  remarks: string,
+  date: string
+}

@@ -4,3 +4,10 @@ export enum RoutesEnum {
   signUp = 'sign-up',
   dashboard = 'dashboard'
 }
+
+// eslint-disable-next-line no-shadow
+export enum TransactionKeys {
+  amountLookAhead = 'Transaction Successful',
+  remarksLookAhead = 'Purpose/Bill QR: Date',
+  journalLookAhead = 'Jrnl. No'
+}
