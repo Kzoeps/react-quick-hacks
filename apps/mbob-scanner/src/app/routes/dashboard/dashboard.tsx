@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
 import useTesseract from '../../hooks/useTesseract';
 import { LoadersReducer, LoadersState, ReducerAction } from '../../models';
-import { fetchDetailsFromText } from '../../utils';
+import { fetchDetailsFromTransaction } from '../../utils';
 
 /* eslint-disable-next-line */
 export interface DashboardProps {}
@@ -36,7 +36,7 @@ export function Dashboard(props: DashboardProps) {
     <HacketUpload accept='image/*'
                   customRequest={async ({ file, onSuccess }) => {
                     const text = await readImageText(file as File);
-                    fetchDetailsFromText(text);
+                    fetchDetailsFromTransaction(text);
                     if (onSuccess) onSuccess('ok');
                   }}
                   uploadInterface={

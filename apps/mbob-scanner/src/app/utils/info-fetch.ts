@@ -1,12 +1,15 @@
-export const fetchJournalNumber = (text: string): string=> {
+export const fetchJournalNumber = (text: string): string => {
   debugger;
   return '';
-}
+};
 
-export const fetchDetailsFromText = (text: string | undefined): string => {
-  if (!text) return '';
-  debugger;
-  return '';
-}
+const splitAndFilterText = (splitKey: string, text: string): string[] => {
+  return text.split(splitKey).filter(line => line);
+};
 
-export default fetchDetailsFromText;
+export const fetchDetailsFromTransaction = (transactionDetails: string | undefined): string => {
+  if (!transactionDetails) return '';
+  const lines = splitAndFilterText('\n', transactionDetails);
+};
+
+export default fetchDetailsFromTransaction;
