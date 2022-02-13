@@ -1,7 +1,6 @@
 import { DatabaseTwoTone, FileAddTwoTone, ScanOutlined } from '@ant-design/icons';
 import { HacketUpload } from '@react-quick-hacks/ui-kit';
-import { useEffect, useReducer, useState } from 'react';
-import { UploadFileStatus } from 'antd/es/upload/interface';
+import { useEffect, useReducer } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
 import useTesseract from '../../hooks/useTesseract';

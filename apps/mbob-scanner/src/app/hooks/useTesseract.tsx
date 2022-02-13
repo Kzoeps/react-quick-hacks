@@ -1,5 +1,5 @@
 import { NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
-import { Dispatch, DispatchWithoutAction, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, useEffect, useRef } from 'react';
 import worker, { loadWorker } from '../plugins/tesseract-plugin';
 
 export interface TesseractOptions {

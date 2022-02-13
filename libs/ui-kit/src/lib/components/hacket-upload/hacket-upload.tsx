@@ -2,7 +2,6 @@ import './hacket-upload.module.scss';
 import { Button, Upload, UploadProps } from 'antd';
 import { UploadOutlined } from '@ant-design/icons';
 
-/* eslint-disable-next-line */
 export interface HacketUploadProps extends UploadProps {
   uploadInterface?: JSX.Element;
 }

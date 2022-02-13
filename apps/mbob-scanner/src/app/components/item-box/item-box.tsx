@@ -1,5 +1,4 @@
 import './item-box.module.scss';
-import { ScanOutlined } from '@ant-design/icons';
 
 /* eslint-disable-next-line */
 export interface ItemBoxProps<T> {
