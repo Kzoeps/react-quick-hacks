@@ -36,7 +36,7 @@ export function Dashboard(props: DashboardProps) {
     <HacketUpload accept='image/*'
                   customRequest={async ({ file, onSuccess }) => {
                     const text = await readImageText(file as File);
-                    fetchDetailsFromTransaction(text);
+                    const transactionInfo = fetchDetailsFromTransaction(text);
                     if (onSuccess) onSuccess('ok');
                   }}
                   uploadInterface={
