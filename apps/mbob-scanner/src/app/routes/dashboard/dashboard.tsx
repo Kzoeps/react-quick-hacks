@@ -11,14 +11,13 @@ export interface DashboardProps {}
 
 export function Dashboard(props: DashboardProps) {
   const [uploadStatus, setUploadStatus] = useState<UploadFileStatus | undefined>(undefined);
+  const [isTesseractReady,  setIsTesseractReady] = useState(false);
   const [showLoader, setShowLoader] = useState<boolean>(false);
   const navigate = useNavigate();
-  const { loadWorker, readImageText }= useTesseract({});
+  const { readImageText } = useTesseract({});
   useEffect(() => {
-    setShowLoader(true);
     console.log('inside of tesseract loader');
-    loadWorker().then(() => setShowLoader(false));
-  }, [loadWorker]);
+  }, []);
 
   useEffect(() => () => {
     setShowLoader(false);
