@@ -41,17 +41,11 @@ export function Dashboard(props: DashboardProps) {
     }
   };
   const [state, dispatch] = useReducer<LoadersReducer>(loadersReducer, {isLoading: false, isLoadingTesseract: false});
-  const [uploadStatus, setUploadStatus] = useState<UploadFileStatus | undefined>(undefined);
-  const [showLoader, setShowLoader] = useState<boolean>(false);
   const navigate = useNavigate();
   const { readImageText } = useTesseract({dispatch});
 
-  useEffect(() => {
-    console.log('inside of tesseract loader');
-  }, []);
-
   useEffect(() => () => {
-    setShowLoader(false);
+    dispatch({type: 'update-loader', payload: false});
   },[]);
 
   if (state.isLoading) {
