@@ -1,10 +1,10 @@
 import { DatabaseTwoTone, FileAddTwoTone, ScanOutlined } from '@ant-design/icons';
 import { HacketUpload } from '@react-quick-hacks/ui-kit';
-import { useEffect, useReducer } from 'react';
+import { useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
 import useTesseract from '../../hooks/useTesseract';
-import { LoadersReducer, LoadersState, ReducerAction } from '../../models';
+import { LoadersReducer, LoadersState, ReducerAction, TransactionRawDetails } from '../../models';
 import { fetchDetailsFromTransaction } from '../../utils';
 
 /* eslint-disable-next-line */
@@ -29,6 +29,7 @@ const loadersReducer = (state: LoadersState , action: ReducerAction): LoadersSta
 
 export function Dashboard(props: DashboardProps) {
   const [state, dispatch] = useReducer<LoadersReducer>(loadersReducer, { isLoading: false, isLoadingTesseract: false });
+  const [transactionInfo, setTransactionInfo] = useState<TransactionRawDetails | undefined>(undefined);
   const navigate = useNavigate();
   const { readImageText } = useTesseract({ dispatch });
 
@@ -36,7 +37,7 @@ export function Dashboard(props: DashboardProps) {
     <HacketUpload accept='image/*'
                   customRequest={async ({ file, onSuccess }) => {
                     const text = await readImageText(file as File);
-                    const transactionInfo = fetchDetailsFromTransaction(text);
+                    setTransactionInfo(fetchDetailsFromTransaction(text));
                     if (onSuccess) onSuccess('ok');
                   }}
                   uploadInterface={
@@ -60,6 +61,18 @@ export function Dashboard(props: DashboardProps) {
       { state.isLoadingTesseract ? <div> Loading ... </div> : renderUploader()}
       <ItemBox onBoxClick={() => navigate('/login')} label='Records' value='records' icon={<DatabaseTwoTone style={{ fontSize: '30px' }} />} />
       <ItemBox label='Add Record' value='new-record' icon={<FileAddTwoTone style={{ fontSize: '30px' }} />} />
+      <p>
+        Transaction Amount: {transactionInfo?.transactionAmount}
+      </p>
+      <p>
+        Journal Number: {transactionInfo?.journalNumber}
+      </p>
+      <p>
+        Remarks: {transactionInfo?.remarks}
+      </p>
+      <p>
+        Date: {transactionInfo?.date}
+      </p>
     </div>
   );
 }

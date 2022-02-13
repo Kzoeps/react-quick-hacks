@@ -1,5 +1,6 @@
 import Fuse from 'fuse.js';
 import { TransactionKeys } from '../enums/routes-enum';
+import { TransactionRawDetails } from '../models';
 
 const splitAndFilterText = (splitKey: string, text: string): string[] => {
   return text.split(splitKey).filter(line => line);
@@ -16,8 +17,8 @@ export const fetchSpecificInfo = (key: string, fuse: Fuse<string>, transactionDe
 }
 
 
-export const fetchDetailsFromTransaction = (transactionDetails: string | undefined) => {
-  if (!transactionDetails) return '';
+export const fetchDetailsFromTransaction = (transactionDetails: string | undefined): TransactionRawDetails | undefined=> {
+  if (!transactionDetails) return undefined;
   const details = splitAndFilterText('\n', transactionDetails);
   const fuse = new Fuse<string>(details);
   const transactionAmount = fetchSpecificInfo(TransactionKeys.amountLookAhead, fuse, details);
