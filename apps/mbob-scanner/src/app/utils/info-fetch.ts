@@ -3,4 +3,10 @@ export const fetchJournalNumber = (text: string): string=> {
   return '';
 }
 
-export default fetchJournalNumber;
+export const fetchDetailsFromText = (text: string | undefined): string => {
+  if (!text) return '';
+  debugger;
+  return '';
+}
+
+export default fetchDetailsFromText;
