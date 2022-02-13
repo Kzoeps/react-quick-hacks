@@ -53,9 +53,9 @@ export function Dashboard(props: DashboardProps) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
       { state.isLoadingTesseract ?<div> Loading ... </div> : <HacketUpload accept='image/*'
-                     customRequest={(file) => {
-                       readImageText(file.file as File);
-                       console.log(file);
+                     customRequest={async ({file, onSuccess}) => {
+                       await readImageText(file as File);
+                       if (onSuccess) onSuccess('ok');
                      }} uploadInterface={<ItemBox label='Scan' value='scan'
                                                   icon={<ScanOutlined
                                                     style={{ fontSize: '30px', color: '#1890ff' }} />} />} />
