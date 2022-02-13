@@ -1,5 +1,5 @@
 import { NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
-import { Dispatch, SetStateAction, useEffect, useRef } from 'react';
+import { Dispatch, DispatchWithoutAction, SetStateAction, useEffect, useRef } from 'react';
 import worker, { loadWorker } from '../plugins/tesseract-plugin';
 
 export interface TesseractOptions {
@@ -8,19 +8,19 @@ export interface TesseractOptions {
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface UseTesseractProps {
-  areOperationsPending: Dispatch<SetStateAction<boolean>>;
+  dispatch: Dispatch<{ type: 'update-tesseract',payload: boolean}>
 }
 
-export const useTesseract = ({areOperationsPending}: UseTesseractProps): TesseractOptions => {
+export const useTesseract = ({dispatch}: UseTesseractProps): TesseractOptions => {
   const isTesseractReady = useRef<boolean>(false);
   useEffect(() => {
-    areOperationsPending(true);
+    dispatch({ type: 'update-tesseract', payload: true });
     if (isTesseractReady.current) {
       return;
     }
     loadWorker().then(() => {
       isTesseractReady.current = false;
-      areOperationsPending(false);
+      dispatch({ type: 'update-tesseract', payload: false });
     });
   }, []);
   const readImageText = async (image: File): Promise<string | undefined> => {
