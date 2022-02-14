@@ -2,7 +2,8 @@
 export enum RoutesEnum {
   login = 'login',
   signUp = 'sign-up',
-  dashboard = 'dashboard'
+  dashboard = 'dashboard',
+  addRecord = 'add-record',
 }
 
 // eslint-disable-next-line no-shadow

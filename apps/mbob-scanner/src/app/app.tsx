@@ -8,6 +8,7 @@ import { Login, SignUp } from './routes';
 import Shell from './shell/shell';
 import Dashboard from './routes/dashboard/dashboard';
 import app from './firebase-config';
+import EntryAddition from './routes/entry-addition/entry-addition';
 
 export function App() {
   return (
@@ -21,6 +22,11 @@ export function App() {
               <Route path={RoutesEnum.dashboard} element={
                 <ProtectedRoute redirectPath={`/${RoutesEnum.login}`}>
                   <Dashboard />
+                </ProtectedRoute>
+              } />
+              <Route path={RoutesEnum.addRecord} element={
+                <ProtectedRoute redirectPath={`/${RoutesEnum.login}`}>
+                  <EntryAddition/>
                 </ProtectedRoute>
               } />
               <Route path='' element={<Login />} />
