@@ -11,7 +11,7 @@ export interface UseTesseractProps {
   dispatch: Dispatch<{ type: 'update-tesseract',payload: boolean}>
 }
 
-export const useTesseract = ({dispatch}: UseTesseractProps): TesseractOptions => {
+const useTesseract = ({dispatch}: UseTesseractProps): TesseractOptions => {
   const isTesseractReady = useRef<boolean>(false);
   useEffect(() => {
     dispatch({ type: 'update-tesseract', payload: true });
