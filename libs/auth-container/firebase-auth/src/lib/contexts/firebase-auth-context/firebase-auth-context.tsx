@@ -21,7 +21,6 @@ export function FirebaseAuthContext({app, children}: FirebaseAuthContextProps) {
   const [contextState, setContextState] = useState<AuthContextInfo>({ currentUser: undefined, phoneNumber: undefined});
 
   useEffect(() => {
-    console.log('set up listeners')
     const auth = getAuth(app);
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
