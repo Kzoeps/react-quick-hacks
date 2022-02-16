@@ -1,8 +1,9 @@
 import { DatabaseTwoTone, FileAddTwoTone, ScanOutlined } from '@ant-design/icons';
 import { HacketUpload } from '@react-quick-hacks/ui-kit';
-import { useEffect, useReducer, useState } from 'react';
+import { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
+import { TransactionDetailContext, TransactionDetailsContext } from '../../contexts/transaction-detail.context';
 import useTesseract from '../../hooks/useTesseract';
 import { LoadersReducer, LoadersState, ReducerAction, TransactionRawDetails } from '../../models';
 import { fetchDetailsFromTransaction } from '../../utils';
@@ -31,13 +32,15 @@ export function Dashboard(props: DashboardProps) {
   const [state, dispatch] = useReducer<LoadersReducer>(loadersReducer, { isLoading: false, isLoadingTesseract: false });
   const [transactionInfo, setTransactionInfo] = useState<TransactionRawDetails | undefined>(undefined);
   const navigate = useNavigate();
+  const transactionDetailsContext = useContext<TransactionDetailsContext | undefined>(TransactionDetailContext);
   const { readImageText } = useTesseract({ dispatch });
 
   const renderUploader = () => (
     <HacketUpload accept='image/*'
                   customRequest={async ({ file, onSuccess }) => {
-                    const text = await readImageText(file as File);
-                    setTransactionInfo(fetchDetailsFromTransaction(text));
+                    const transactionDets= await readImageText(file as File);
+                    setTransactionInfo(fetchDetailsFromTransaction(transactionDets));
+                    if (transactionDetailsContext?.setTransactionDetails) transactionDetailsContext.setTransactionDetails(fetchDetailsFromTransaction(transactionDets));
                     if (onSuccess) onSuccess('ok');
                   }}
                   uploadInterface={

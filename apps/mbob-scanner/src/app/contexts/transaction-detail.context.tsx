@@ -20,4 +20,3 @@ export const MboxTransactionDetailContext = ({children}: MboxTransactionDetailCo
         </TransactionDetailContext.Provider>
     );
 };
-}
