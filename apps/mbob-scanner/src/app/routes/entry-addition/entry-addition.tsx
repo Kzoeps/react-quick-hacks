@@ -1,12 +1,10 @@
 import './entry-addition.module.scss';
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import { AuthContext, AuthContextInfo } from '@react-quick-hacks/firebase-auth';
 import { getFirestore } from 'firebase/firestore';
+import { NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
 import EntryForm from '../../components/entry-form/entry-form';
-import {
-  TransactionDetailContext,
-  TransactionDetailsContext,
-} from '../../contexts/transaction-detail.context';
+import { TransactionDetailContext, TransactionDetailsContext } from '../../contexts/transaction-detail.context';
 import { TransactionRawDetails } from '../../models';
 import { createRecord } from '../../firebase-calls/new-entry';
 import app from '../../firebase-config';
@@ -24,6 +22,7 @@ export function EntryAddition(props: EntryAdditionProps) {
   const addTxnRecord = async (details: Partial<TransactionRawDetails>) => {
     if (details && phoneNumber ) {
       await createRecord(db, {...details, owner: phoneNumber});
+      showNotification('Transaction added successfully', NotificationTypeEnum.Success);
     }
   }
   return (

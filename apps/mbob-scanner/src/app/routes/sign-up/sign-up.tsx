@@ -3,8 +3,8 @@ import { SignUpControlNames, SignUpForm, SignUpFormValues } from '@react-quick-h
 import { usePhoneVerify } from '@react-quick-hacks/firebase-auth';
 import { getFirestore, doc, setDoc } from "firebase/firestore"
 import { appendBhtCode, NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
-import app from '../../firebase-config';
 import { useNavigate } from 'react-router-dom';
+import app from '../../firebase-config';
 import { RoutesEnum } from '../../enums/routes-enum';
 
 /* eslint-disable-next-line */
