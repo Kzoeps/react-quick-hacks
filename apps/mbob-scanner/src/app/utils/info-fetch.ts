@@ -2,9 +2,7 @@ import Fuse from 'fuse.js';
 import { TransactionKeys } from '../enums/routes-enum';
 import { TransactionRawDetails } from '../models';
 
-const splitAndFilterText = (splitKey: string, text: string): string[] => {
-  return text.split(splitKey).filter(line => line);
-};
+const splitAndFilterText = (splitKey: string, text: string): string[] => text.split(splitKey).filter(line => line);
 
 const getRemarks = (remarks: string): string => remarks.replace(/\d+\s?[A-Z|a-z]+\s\d+\s?\d+:?\d+:?\d+/gm, '')
 

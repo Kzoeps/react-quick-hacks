@@ -4,6 +4,7 @@ import { useContext, useEffect, useReducer, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import ItemBox from '../../components/item-box/item-box';
 import { TransactionDetailContext, TransactionDetailsContext } from '../../contexts/transaction-detail.context';
+import { RoutesEnum } from '../../enums/routes-enum';
 import useTesseract from '../../hooks/useTesseract';
 import { LoadersReducer, LoadersState, ReducerAction, TransactionRawDetails } from '../../models';
 import { fetchDetailsFromTransaction } from '../../utils';
@@ -42,6 +43,7 @@ export function Dashboard(props: DashboardProps) {
                     setTransactionInfo(fetchDetailsFromTransaction(transactionDets));
                     if (transactionDetailsContext?.setTransactionDetails) transactionDetailsContext.setTransactionDetails(fetchDetailsFromTransaction(transactionDets));
                     if (onSuccess) onSuccess('ok');
+                    navigate(`/${RoutesEnum.addRecord}`);
                   }}
                   uploadInterface={
                     <ItemBox label='Scan' value='scan'
