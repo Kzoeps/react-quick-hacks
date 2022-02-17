@@ -27,7 +27,7 @@ export function EntryAddition(props: EntryAdditionProps) {
   }
   return (
     <div>
-      <h1>Welcome to entry-addition!</h1>
+      <h1>Add Transaction</h1>
       <EntryForm
         transactionDetails={
           transactionContext?.transactionDetails
