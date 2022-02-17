@@ -8,6 +8,8 @@ const getRemarks = (remarks: string): string => remarks.replace(/\d+\s?[A-Z|a-z]
 
 const getDate = (date: string): string => date.match(/\d+\s?[A-Z|a-z]+\s\d+\s?\d+:?\d+:?\d+/gm)?.[0] || ''
 
+const getNumericValue = (amount: string): number => +(amount.match(/\d+.?/gm)?.join('') || 0);
+
 export const fetchSpecificInfo = (key: string, fuse: Fuse<string>, transactionDetails: string[]): string => {
   const transactionMatch = fuse.search<string>(key)?.[0]?.item;
   const transactionIndex = transactionDetails.indexOf(transactionMatch);
@@ -19,7 +21,7 @@ export const fetchDetailsFromTransaction = (transactionDetails: string | undefin
   if (!transactionDetails) return undefined;
   const details = splitAndFilterText('\n', transactionDetails);
   const fuse = new Fuse<string>(details);
-  const transactionAmount = fetchSpecificInfo(TransactionKeys.amountLookAhead, fuse, details);
+  const transactionAmount = getNumericValue(fetchSpecificInfo(TransactionKeys.amountLookAhead, fuse, details));
   const journalNumber = fetchSpecificInfo(TransactionKeys.journalLookAhead,fuse, details);
   const remarksAndDates = fetchSpecificInfo(TransactionKeys.remarksLookAhead,fuse, details);
   const remarks = getRemarks(remarksAndDates);
