@@ -22,6 +22,7 @@ export function EntryAddition(props: EntryAdditionProps) {
             ? transactionContext.transactionDetails
             : {}
         }
+        buttonLabel='Add Entry'
         onEntrySubmit={(vals) => console.log(vals)}
       />
     </div>

@@ -16,7 +16,7 @@ export function EntryForm({ transactionDetails, onEntrySubmit, buttonLabel = 'Su
     <div>
       <Formik onSubmit={onEntrySubmit} initialValues={transactionDetails}>
         <Form>
-          <HacketInput name='amount' placeholder='Amount' />
+          <HacketInput type='number' name='transactionAmount' placeholder='Amount' />
           <HacketInput name='journalNumber' placeholder='Journal Number' />
           <HacketInput name='remarks' placeholder='Remarks'/>
           <HacketInput name='date' placeholder='date'/>
