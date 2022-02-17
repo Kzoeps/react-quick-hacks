@@ -16,10 +16,11 @@ export function EntryForm({ transactionDetails, onEntrySubmit, buttonLabel = 'Su
     <div>
       <Formik onSubmit={onEntrySubmit} initialValues={transactionDetails}>
         <Form>
-          <HacketInput type='number' name='transactionAmount' placeholder='Amount' />
-          <HacketInput name='journalNumber' placeholder='Journal Number' />
-          <HacketInput name='remarks' placeholder='Remarks'/>
-          <HacketInput name='date' placeholder='date'/>
+          <HacketInput label='Amount' type='number' name='transactionAmount' placeholder='18000' />
+          <HacketInput type='number' label='Journal Number' name='journalNumber' placeholder='123456' />
+          <HacketInput label='Remarks' name='remarks' placeholder='Eg: For Food'/>
+          <HacketInput label='Date' name='date' placeholder='1/1/2021'/>
+          <HacketInput type='number' label='Phone Number' name='phoneNumber' placeholder='17123742' />
           <Button type='primary' htmlType='submit'>{buttonLabel}</Button>
         </Form>
       </Formik>
