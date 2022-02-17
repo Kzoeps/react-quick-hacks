@@ -16,5 +16,5 @@ export interface TransactionRawDetails {
   transactionAmount: number | string,
   journalNumber: string,
   remarks: string,
-  date: string
+  date: string,
 }
