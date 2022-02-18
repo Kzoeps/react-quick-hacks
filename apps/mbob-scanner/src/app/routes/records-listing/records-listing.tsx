@@ -31,6 +31,8 @@ export function RecordsListing(props: RecordsListingProps) {
   const auth = useContext<AuthContextInfo>(AuthContext);
   const db = getFirestore(app);
   const [transactions, setTransactions] = useState<RecordEntryPayload[]>([]);
+  const { innerWidth } = window;
+  const columnConfig = innerWidth < 500 ? RECORD_LISTING_COLUMNS.filter(({ dataIndex }) => dataIndex !== 'phoneNumber') : RECORD_LISTING_COLUMNS;
   useEffect(() => {
     const fetchRecords = async () => {
       if (auth.phoneNumber) {
@@ -44,7 +46,7 @@ export function RecordsListing(props: RecordsListingProps) {
   }, [auth.phoneNumber, db])
   return (
     <div>
-      <Table columns={RECORD_LISTING_COLUMNS} dataSource={transactions}/>
+      <Table columns={columnConfig} dataSource={transactions}/>
     </div>
   );
 }
