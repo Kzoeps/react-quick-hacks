@@ -38,8 +38,10 @@ export function Dashboard(props: DashboardProps) {
 
   const renderUploader = () => (
     <HacketUpload accept='image/*'
+                  capture='environment'
+                  name='image'
                   customRequest={async ({ file, onSuccess }) => {
-                    const transactionDets= await readImageText(file as File);
+                    const transactionDets = await readImageText(file as File);
                     setTransactionInfo(fetchDetailsFromTransaction(transactionDets));
                     if (transactionDetailsContext?.setTransactionDetails) transactionDetailsContext.setTransactionDetails(fetchDetailsFromTransaction(transactionDets));
                     if (onSuccess) onSuccess('ok');
