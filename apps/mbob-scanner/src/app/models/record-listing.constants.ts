@@ -1,3 +1,6 @@
+import { where, getDocs, collection, query } from 'firebase/firestore';
+import { RecordEntryPayload } from './new-entry';
+
 // eslint-disable-next-line import/prefer-default-export
 export const RECORD_LISTING_COLUMNS = [
   {
@@ -21,3 +24,5 @@ export const RECORD_LISTING_COLUMNS = [
     dataIndex: 'phoneNumber'
   }
 ]
+
+export const queryRecords = (db: any, ownerNumber: string) => getDocs(query(collection(db, 'records'), where('owner','==', ownerNumber)));

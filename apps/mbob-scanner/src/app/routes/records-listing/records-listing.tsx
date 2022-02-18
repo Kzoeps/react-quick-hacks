@@ -1,6 +1,11 @@
 import './records-listing.module.scss';
 import { Table } from 'antd';
-import { RECORD_LISTING_COLUMNS } from '../../models/record-listing.constants';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext, AuthContextInfo } from '@react-quick-hacks/firebase-auth';
+import { getFirestore } from 'firebase/firestore';
+import { queryRecords, RECORD_LISTING_COLUMNS } from '../../models/record-listing.constants';
+import app from '../../firebase-config';
+import { RecordEntryPayload } from '../../models/new-entry';
 
 /* eslint-disable-next-line */
 export interface RecordsListingProps {}
@@ -14,10 +19,32 @@ const DATA_SOURCE = [{
   phoneNumber: '17864119'
 }]
 
+const mapDataToTable = ({id: key, ...data}: RecordEntryPayload & {id: string}) => {
+  return {
+    ...data,
+    key,
+    transactionAmount: `Nu. ${data.transactionAmount}`
+  }
+}
+
 export function RecordsListing(props: RecordsListingProps) {
+  const auth = useContext<AuthContextInfo>(AuthContext);
+  const db = getFirestore(app);
+  const [transactions, setTransactions] = useState<RecordEntryPayload[]>([]);
+  useEffect(() => {
+    const fetchRecords = async () => {
+      if (auth.phoneNumber) {
+        const recordsSnapshot = await queryRecords(db, auth.phoneNumber)
+        recordsSnapshot.forEach((doc) => {
+          setTransactions((previousValue) => [...previousValue, mapDataToTable({...doc.data(), id: doc.id} as RecordEntryPayload & {id: string})]);
+        })
+      }
+    }
+    fetchRecords();
+  }, [auth.phoneNumber, db])
   return (
     <div>
-      <Table columns={RECORD_LISTING_COLUMNS} dataSource={DATA_SOURCE}/>
+      <Table columns={RECORD_LISTING_COLUMNS} dataSource={transactions}/>
     </div>
   );
 }
