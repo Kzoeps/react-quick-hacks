@@ -66,7 +66,7 @@ export function Dashboard(props: DashboardProps) {
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
       { state.isLoadingTesseract ? <div> Loading ... </div> : renderUploader()}
-      <ItemBox onBoxClick={() => navigate('/login')} label='Records' value='records' icon={<DatabaseTwoTone style={{ fontSize: '30px' }} />} />
+      <ItemBox onBoxClick={() => navigate(`/${RoutesEnum.records}`)} label='Records' value='records' icon={<DatabaseTwoTone style={{ fontSize: '30px' }} />} />
       <ItemBox label='Add Record' value='new-record' icon={<FileAddTwoTone style={{ fontSize: '30px' }} />} />
       <p>
         Transaction Amount: {transactionInfo?.transactionAmount}

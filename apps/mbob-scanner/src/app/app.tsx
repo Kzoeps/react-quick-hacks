@@ -13,6 +13,7 @@ import Dashboard from './routes/dashboard/dashboard';
 import app from './firebase-config';
 import EntryAddition from './routes/entry-addition/entry-addition';
 import { MboxTransactionDetailContext } from './contexts/transaction-detail.context';
+import RecordsListing from './routes/records-listing/records-listing';
 
 export function App() {
   return (
@@ -37,6 +38,14 @@ export function App() {
                   element={
                     <ProtectedRoute redirectPath={`/${RoutesEnum.login}`}>
                       <EntryAddition />
+                    </ProtectedRoute>
+                  }
+                />
+                <Route
+                  path={RoutesEnum.records}
+                  element={
+                    <ProtectedRoute redirectPath={`/${RoutesEnum.login}`}>
+                      <RecordsListing/>
                     </ProtectedRoute>
                   }
                 />
