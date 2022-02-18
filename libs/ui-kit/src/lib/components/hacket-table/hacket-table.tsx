@@ -1,13 +1,18 @@
 import './hacket-table.module.scss';
+import { Table } from 'antd';
+import { ColumnsType } from 'antd/lib/table';
 
 /* eslint-disable-next-line */
-export interface HacketTableProps {}
+export interface HacketTableProps<T = unknown, R = unknown> {
+  columns: any[],
+  dataSource: any[]
+}
 
-export function HacketTable(props: HacketTableProps) {
+export function HacketTable<T = unknown, R = unknown>({columns, dataSource}: HacketTableProps<T, R>) {
   return (
-    <div>
-      <h1>Welcome to hacket-table!</h1>
-    </div>
+    <>
+      <Table columns={columns} dataSource={dataSource}/>
+    </>
   );
 }
 
