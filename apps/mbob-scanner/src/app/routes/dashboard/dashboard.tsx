@@ -8,6 +8,7 @@ import { RoutesEnum } from '../../enums/routes-enum';
 import useTesseract from '../../hooks/useTesseract';
 import { LoadersReducer, LoadersState, ReducerAction, TransactionRawDetails } from '../../models';
 import { fetchDetailsFromTransaction } from '../../utils';
+import { Spin } from 'antd';
 
 /* eslint-disable-next-line */
 export interface DashboardProps {}
@@ -41,10 +42,12 @@ export function Dashboard(props: DashboardProps) {
                   capture='environment'
                   name='image'
                   customRequest={async ({ file, onSuccess }) => {
+                    dispatch({ type: 'update-loader', payload: true });
                     const transactionDets = await readImageText(file as File);
                     setTransactionInfo(fetchDetailsFromTransaction(transactionDets));
                     if (transactionDetailsContext?.setTransactionDetails) transactionDetailsContext.setTransactionDetails(fetchDetailsFromTransaction(transactionDets));
                     if (onSuccess) onSuccess('ok');
+                    dispatch({ type: 'update-loader', payload: false });
                     navigate(`/${RoutesEnum.addRecord}`);
                   }}
                   uploadInterface={
@@ -61,7 +64,7 @@ export function Dashboard(props: DashboardProps) {
   }, []);
 
   if (state.isLoading) {
-    return <div>Loading...</div>;
+    return <Spin/>;
   }
   return (
     <div style={{ display: 'flex', justifyContent: 'center', flexDirection: 'column' }}>
