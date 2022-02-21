@@ -5,7 +5,7 @@ export interface HacketSelectProps<T = any> extends SelectProps<T> {
   name: string,
   validate: unknown,
   label?: string,
-  onChange?: (value: T) => void
+  onChange?: (value: T, option: unknown) => void
 }
 
 export const renderOptions = <T extends any>(options: { label: string, value: T }[]) => (

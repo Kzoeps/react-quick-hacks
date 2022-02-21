@@ -1,11 +1,6 @@
 import './app.module.scss';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import {
-  ProtectedRoute,
-  FirebaseAuthContext,
-} from '@react-quick-hacks/firebase-auth';
-import { createWorker } from 'tesseract.js';
-import { useEffect, useState } from 'react';
+import { FirebaseAuthContext, ProtectedRoute, UnauthenticatedRoute } from '@react-quick-hacks/firebase-auth';
 import { RoutesEnum } from './enums/routes-enum';
 import { Login, SignUp } from './routes';
 import Shell from './shell/shell';
@@ -22,9 +17,17 @@ export function App() {
         <MboxTransactionDetailContext>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Shell />}>
-                <Route path={RoutesEnum.signUp} element={<SignUp />} />
-                <Route path={RoutesEnum.login} element={<Login />} />
+              <Route path='/' element={<Shell />}>
+                <Route path={RoutesEnum.signUp} element={
+                  <UnauthenticatedRoute
+                    redirectPath={`/${RoutesEnum.dashboard}`}>
+                    <SignUp />
+                  </UnauthenticatedRoute>} />
+                <Route path={RoutesEnum.login} element={
+                  <UnauthenticatedRoute redirectPath={`/${RoutesEnum.dashboard}`}>
+                    <Login />
+                  </UnauthenticatedRoute>
+                } />
                 <Route
                   path={RoutesEnum.dashboard}
                   element={
