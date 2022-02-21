@@ -11,7 +11,7 @@ export interface HktDrawerProps {
 
 export const HktDrawer = ({ showDrawer, onDrawerClose, configuration, onItemClick }: HktDrawerProps) => {
   return (
-    <Drawer title='Basic Drawer' style={{ cursor: 'pointer'}} placement='left' onClose={onDrawerClose} visible={showDrawer}>
+    <Drawer title='MBox' style={{ cursor: 'pointer'}} placement='left' onClose={onDrawerClose} visible={showDrawer}>
       {configuration.map((navItem) => <div key={navItem.value} onClick={() => onItemClick(navItem.value)}>
         <p>
           {navItem.icon} {navItem.title}

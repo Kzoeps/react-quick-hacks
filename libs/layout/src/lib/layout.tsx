@@ -2,9 +2,10 @@ import './layout.module.scss';
 import { Button, Layout as AntDLayout, Menu } from 'antd';
 import { ReactElement, useState } from 'react';
 import { MenuUnfoldOutlined } from '@ant-design/icons';
+import { useNavigate } from 'react-router-dom';
+import dayjs from 'dayjs';
 import HktDrawer from './components/hkt-drawer/hkt-drawer';
 import { NavigationConfiguration } from './models';
-import { useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {
@@ -24,7 +25,6 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
   const onNavItemClick = (link: string) => {
     navigate(`/${link}`);
   }
-  const arr = [1, 2, 3, 4, 5];
   return (
     <AntDLayout className="layout">
       <Header>
@@ -45,7 +45,7 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
       <Content style={{ padding: '0 50px' }}>
         {children}
       </Content>
-      <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+      <Footer style={{ textAlign: 'center' }}>Hacket Co ©{dayjs().year()}</Footer>
     </AntDLayout>
   );
 }
