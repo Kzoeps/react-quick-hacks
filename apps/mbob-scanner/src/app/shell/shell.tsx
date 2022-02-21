@@ -9,9 +9,9 @@ import { NAVIGATION_CONSTANTS } from '../models/record-listing.constants';
 export interface ShellProps {}
 
 export function Shell(props: ShellProps) {
-  const {phoneNumber}= useContext<AuthContextInfo>(AuthContext);
+  const {phoneNumber, logout}= useContext<AuthContextInfo>(AuthContext);
   return (
-    <Layout showNav={!!phoneNumber} configuration={NAVIGATION_CONSTANTS}>
+    <Layout showLogout={false} onLogoutClick={logout || (() => undefined) } showNav={!!phoneNumber} configuration={NAVIGATION_CONSTANTS}>
       <Outlet/>
     </Layout>
   );

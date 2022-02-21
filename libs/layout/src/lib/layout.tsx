@@ -12,11 +12,19 @@ export interface LayoutProps {
   children: ReactElement;
   showNav?: boolean;
   configuration?: NavigationConfiguration;
+  showLogout?: boolean;
+  onLogoutClick?: () => void;
 }
 
 const { Header, Content, Footer } = AntDLayout;
 
-export function Layout({children, configuration = [], showNav = false}: LayoutProps) {
+export function Layout({
+                         children,
+                         configuration = [],
+                         showNav = false,
+                         showLogout = false,
+                         onLogoutClick = () => undefined
+                       }: LayoutProps) {
   const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const onDrawerClose = () => {
     setShowDrawer(false);
@@ -24,9 +32,9 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
   const navigate = useNavigate();
   const onNavItemClick = (link: string) => {
     navigate(`/${link}`);
-  }
+  };
   return (
-    <AntDLayout className="layout">
+    <AntDLayout className='layout'>
       <Header>
         <div className='logo' />
         {
@@ -39,6 +47,9 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
                          configuration={configuration} />
             </Menu.Item>
             }
+            {showLogout && <Menu.Item key='logout'>
+              <Button type='ghost' onClick={onLogoutClick}>Logout</Button>
+            </Menu.Item>}
           </Menu>
         }
       </Header>

@@ -48,11 +48,13 @@ export function App() {
                   path={RoutesEnum.records}
                   element={
                     <ProtectedRoute redirectPath={`/${RoutesEnum.login}`}>
-                      <RecordsListing/>
+                      <RecordsListing />
                     </ProtectedRoute>
                   }
                 />
-                <Route path="" element={<Login />} />
+                <Route path='' element={<ProtectedRoute redirectPath={`/${RoutesEnum.signUp}`}>
+                  <Dashboard />
+                </ProtectedRoute>} />
               </Route>
             </Routes>
           </BrowserRouter>
