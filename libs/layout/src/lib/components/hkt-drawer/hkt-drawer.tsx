@@ -5,13 +5,14 @@ import { NavigationConfiguration } from '../../models';
 export interface HktDrawerProps {
   showDrawer: boolean,
   onDrawerClose: (...args: unknown[]) => unknown,
-  configuration: NavigationConfiguration
+  configuration: NavigationConfiguration,
+  onItemClick: (value: string) => void
 }
 
-export const HktDrawer = ({ showDrawer, onDrawerClose, configuration }: HktDrawerProps) => {
+export const HktDrawer = ({ showDrawer, onDrawerClose, configuration, onItemClick }: HktDrawerProps) => {
   return (
     <Drawer title='Basic Drawer' placement='left' onClose={onDrawerClose} visible={showDrawer}>
-      {configuration.map((navItem) => <div key={navItem.value} onClick={() => console.log(navItem.value)}>
+      {configuration.map((navItem) => <div key={navItem.value} onClick={() => onItemClick(navItem.value)}>
         <p>
           {navItem.icon} {navItem.title}
         </p>

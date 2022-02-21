@@ -4,6 +4,7 @@ import { ReactElement, useState } from 'react';
 import { MenuUnfoldOutlined } from '@ant-design/icons';
 import HktDrawer from './components/hkt-drawer/hkt-drawer';
 import { NavigationConfiguration } from './models';
+import { useNavigate } from 'react-router-dom';
 
 /* eslint-disable-next-line */
 export interface LayoutProps {
@@ -19,6 +20,10 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
   const onDrawerClose = () => {
     setShowDrawer(false);
   };
+  const navigate = useNavigate();
+  const onNavItemClick = (link: string) => {
+    navigate(`/${link}`);
+  }
   const arr = [1, 2, 3, 4, 5];
   return (
     <AntDLayout className="layout">
@@ -30,7 +35,7 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
               <Button shape='circle' icon={<MenuUnfoldOutlined />} onClick={() => setShowDrawer(true)} ghost />
             </Menu.Item>
             <Menu.Item key='navigation'>
-              <HktDrawer showDrawer={showDrawer} onDrawerClose={onDrawerClose} configuration={configuration} />
+              <HktDrawer showDrawer={showDrawer} onItemClick={onNavItemClick} onDrawerClose={onDrawerClose} configuration={configuration} />
             </Menu.Item>
           </Menu>
         }
