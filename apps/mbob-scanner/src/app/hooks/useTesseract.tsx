@@ -34,7 +34,7 @@ const useTesseract = ({dispatch}: UseTesseractProps): TesseractOptions => {
   };
 
   useEffect(() => () => {
-    worker.terminate().then((result) => console.log('terminated', result));
+    // worker.terminate().then((result) => console.log('terminated', result));
   }, []);
 
   return {
