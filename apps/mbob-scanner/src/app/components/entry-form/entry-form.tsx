@@ -10,9 +10,10 @@ export interface EntryFormProps {
   transactionDetails: EntryFormInputs;
   onEntrySubmit: (values: EntryFormInputs) => void;
   buttonLabel?: string;
+  showLoader?: false;
 }
 
-export function EntryForm({ transactionDetails, onEntrySubmit, buttonLabel = 'Submit' }: EntryFormProps) {
+export function EntryForm({ transactionDetails, onEntrySubmit, buttonLabel = 'Submit', showLoader = false }: EntryFormProps) {
   return (
     <div>
       <Formik onSubmit={onEntrySubmit} initialValues={{ ...transactionDetails, phoneNumber: ''}}>
@@ -22,7 +23,7 @@ export function EntryForm({ transactionDetails, onEntrySubmit, buttonLabel = 'Su
           <HacketInput label='Remarks' name='remarks' placeholder='Eg: For Food'/>
           <HacketInput label='Date' name='date' placeholder='1/1/2021'/>
           <HacketInput type='number' label='Phone Number' name='phoneNumber' placeholder='17123742' />
-          <Button type='primary' htmlType='submit'>{buttonLabel}</Button>
+          <Button loading={showLoader} type='primary' htmlType='submit'>{buttonLabel}</Button>
         </Form>
       </Formik>
     </div>
