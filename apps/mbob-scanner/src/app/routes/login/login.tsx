@@ -38,6 +38,7 @@ export function Login(props: LoginProps) {
         onSubmit={handleLogin}
         showOtpEntry={showOtp}
         buttonLabel={showOtp ? 'Login' : 'Generate Otp'} />
+      <a href={`/${RoutesEnum.signUp}`}>Sign UP</a>
       <div id='recaptcha-container' />
     </>
   );

@@ -29,6 +29,7 @@ export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = fal
       onSubmit={onSubmit}>
         <Form>
           <HacketInput
+            label="Phone Number"
             placeholder='Phone Number'
             prefix={<PhoneTwoTone />}
             type='number'
@@ -36,12 +37,14 @@ export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = fal
             disabled={controlsToDisable.includes('phoneNumber')}
           />
           <HacketInput
+            label="Name"
             name="name"
             placeholder="Name"
             prefix={<UserOutlined />}
             disabled={controlsToDisable.includes('name')}
           />
           <HacketSelect
+            label='Dzongkhag'
             name="dzongkhag"
             validate={undefined}
             disabled={controlsToDisable.includes('dzongkhag')}

@@ -53,6 +53,7 @@ export function SignUp(props: SignUpProps) {
         showOtpEntry={showOtp}
         buttonLabel={showOtp ? 'Sign Up' : 'Generate OTP'}
         controlsToDisable={showOtp ? DISABLED_CONTROLS : []}/>
+      <a href={`/${RoutesEnum.login}`}>Login</a>
       <div id='recaptcha-container' />
     </>
   );

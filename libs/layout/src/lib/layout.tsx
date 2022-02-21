@@ -16,7 +16,7 @@ export interface LayoutProps {
 const { Header, Content, Footer } = AntDLayout;
 
 export function Layout({children, configuration = [], showNav = false}: LayoutProps) {
-  const [showDrawer, setShowDrawer] = useState<boolean>(true);
+  const [showDrawer, setShowDrawer] = useState<boolean>(false);
   const onDrawerClose = () => {
     setShowDrawer(false);
   };
