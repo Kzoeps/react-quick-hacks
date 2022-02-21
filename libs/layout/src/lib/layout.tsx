@@ -30,13 +30,15 @@ export function Layout({children, configuration = [], showNav = false}: LayoutPr
       <Header>
         <div className='logo' />
         {
-          showNav && <Menu theme='dark' mode='horizontal' defaultSelectedKeys={['2']}>
+          showNav && <Menu theme='dark' mode='horizontal' defaultSelectedKeys={[]}>
             <Menu.Item key='navigation-button'>
               <Button shape='circle' icon={<MenuUnfoldOutlined />} onClick={() => setShowDrawer(true)} ghost />
             </Menu.Item>
-            <Menu.Item key='navigation'>
-              <HktDrawer showDrawer={showDrawer} onItemClick={onNavItemClick} onDrawerClose={onDrawerClose} configuration={configuration} />
+            {showDrawer && <Menu.Item key='navigation'>
+              <HktDrawer showDrawer={showDrawer} onItemClick={onNavItemClick} onDrawerClose={onDrawerClose}
+                         configuration={configuration} />
             </Menu.Item>
+            }
           </Menu>
         }
       </Header>
