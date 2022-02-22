@@ -19,12 +19,24 @@
     }
   },
   "projects": {
+    "auth": {
+      "tags": []
+    },
+    "firebase-auth": {
+      "tags": []
+    },
+    "layout": {
+      "tags": []
+    },
     "mbob-scanner": {
       "tags": []
     },
     "mbob-scanner-e2e": {
       "tags": [],
       "implicitDependencies": ["mbob-scanner"]
+    },
+    "shared": {
+      "tags": []
     },
     "ui-kit": {
       "tags": []
