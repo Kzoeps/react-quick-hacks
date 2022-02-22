@@ -6,7 +6,6 @@ import { appendBhtCode, NotificationTypeEnum, showNotification } from '@react-qu
 import { useNavigate } from 'react-router-dom';
 import app from '../../firebase-config';
 import { RoutesEnum } from '../../enums/routes-enum';
-import { Spin } from 'antd';
 
 /* eslint-disable-next-line */
 export interface SignUpProps {}
@@ -54,12 +53,13 @@ export function SignUp(props: SignUpProps) {
 
   useEffect(() => () => {
     setShowLoader(false);
-  });
-  return showLoader ? <Spin /> : (
+  },[]);
+  return (
     <>
       <SignUpForm
         onSubmit={showOtp ? verifyOtp : generateOtp}
         showOtpEntry={showOtp}
+        showLoader={showLoader}
         buttonLabel={showOtp ? 'Sign Up' : 'Generate OTP'}
         controlsToDisable={showOtp ? DISABLED_CONTROLS : []} />
       <a href={`/${RoutesEnum.login}`}>Login</a>

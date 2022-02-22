@@ -11,13 +11,15 @@ export interface LoginFormProps {
   formInitialValues?: PhoneOtpFormValues;
   buttonLabel?: string;
   showOtpEntry?: boolean;
+  showLoader?: boolean
 }
 
 export function LoginForm({
                             onSubmit,
                             buttonLabel = 'Generate OTP',
                             formInitialValues = PHONE_NUMBER_INITIAL_VALUES,
-                            showOtpEntry = false
+                            showOtpEntry = false,
+                            showLoader = false
                           }: LoginFormProps) {
   return (
     <div>
@@ -30,7 +32,7 @@ export function LoginForm({
             name='phoneNumber'
           />
           {showOtpEntry && <HacketInput name='otp' placeholder='OTP' type='number' prefix={<LockOutlined />} />}
-          <Button htmlType='submit' type='primary'>{buttonLabel}</Button>
+          <Button loading={showLoader} htmlType='submit' type='primary'>{buttonLabel}</Button>
         </Form>
       </Formik>
     </div>

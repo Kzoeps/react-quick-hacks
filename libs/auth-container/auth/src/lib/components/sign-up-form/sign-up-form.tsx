@@ -14,9 +14,10 @@ export interface SignUpFormProps {
   buttonLabel?: string;
   controlsToDisable?: SignUpControlNames[] ;
   showOtpEntry?: boolean;
+  showLoader?: boolean;
 }
 
-export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = false, buttonLabel='Generate OTP'}: SignUpFormProps) {
+export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = false, buttonLabel='Generate OTP', showLoader: loading = false}: SignUpFormProps) {
   const initialValues: SignUpFormValues = {
     phoneNumber: '',
     name: '',
@@ -53,7 +54,7 @@ export function SignUpForm({controlsToDisable = [], onSubmit, showOtpEntry = fal
             />
           <br/>
           {showOtpEntry && <HacketInput name='otp' placeholder='OTP' type='number' prefix={<LockOutlined />} />}
-          <Button htmlType='submit' type='primary' >{buttonLabel}</Button>
+          <Button loading={loading} htmlType='submit' type='primary' >{buttonLabel}</Button>
         </Form>
       </Formik>
     </div>

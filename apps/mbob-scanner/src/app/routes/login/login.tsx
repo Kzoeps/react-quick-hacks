@@ -39,11 +39,11 @@ export function Login(props: LoginProps) {
     setShowOtp(false);
     setShowLoader(false);
   }, []);
-  if (showLoader) return <Spin/>;
   return (
     <>
       <LoginForm
         onSubmit={handleLogin}
+        showLoader={showLoader}
         showOtpEntry={showOtp}
         buttonLabel={showOtp ? 'Login' : 'Generate Otp'} />
       <a href={`/${RoutesEnum.signUp}`}>Sign UP</a>
