@@ -28,6 +28,9 @@
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^4.7.0",
+    "@chakra-ui/react": "^1.8.6",
+    "@emotion/react": "^11.8.2",
+    "@emotion/styled": "^11.8.1",
     "@firebase/auth-types": "^0.11.0",
     "antd": "^4.18.2",
     "core-js": "^3.6.5",
@@ -36,6 +39,7 @@
     "document-register-element": "1.13.1",
     "firebase": "^9.6.5",
     "formik": "^2.2.9",
+    "framer-motion": "^6.2.8",
     "fuse.js": "^6.5.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
