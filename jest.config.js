@@ -6,5 +6,6 @@ module.exports = {
     '<rootDir>/libs/auth',
     '<rootDir>/libs/shared',
     '<rootDir>/libs/firebase-auth',
+    '<rootDir>/apps/mbox',
   ],
 };
