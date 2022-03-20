@@ -271,7 +271,7 @@
     },
     "ui-kit": {
       "root": "libs/ui-kit",
-      "sourceRoot": "libs/ui-kit/src",
+      "sourceRoot": "libs/ui-kit/src/lib",
       "projectType": "library",
       "targets": {
         "lint": {

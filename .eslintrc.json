@@ -13,9 +13,6 @@
       }
     }
   },
-  "extends": [
-    "airbnb"
-  ],
   "overrides": [
     {
       "files": [
