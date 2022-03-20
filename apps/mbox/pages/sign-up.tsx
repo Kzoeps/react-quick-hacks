@@ -16,8 +16,14 @@ import {
 } from '@chakra-ui/react';
 import React, { useState } from 'react';
 import { ViewIcon, ViewOffIcon } from '@chakra-ui/icons';
-import { Field, Form, Formik } from 'formik';
+import { Form, Formik } from 'formik';
 import { SIGN_UP_FORM_INIT } from '../form-constants';
+import app from '../constants/firebase-config';
+import { usePhoneVerify } from '@react-quick-hacks/firebase-auth';
+import { MboxRoutes, SignUpFormModel } from '../models';
+import { doc, setDoc } from 'firebase/firestore';
+import { appendBhtCode, NotificationTypeEnum, showNotification } from '@react-quick-hacks/shared';
+import { useRouter } from 'next/router';
 
 // eslint-disable-next-line @typescript-eslint/no-empty-interface
 export interface SignUpProps {
@@ -26,10 +32,51 @@ export interface SignUpProps {
 export const SignUp = (props: SignUpProps) => {
   const [showPassword, setShowPassword] = useState(false);
   const [otpGenerated, setOtpGenerated] = useState<boolean>(false);
+  const [showLoader, setShowLoader] = useState(false);
+  const verifyPhone = usePhoneVerify(app);
+  const router = useRouter();
+  const db = getFirestore(app);
+
+  const setUpUserProfile = async (signUpForm: SignUpFormModel) => {
+    const { phoneNumber, firstName, lastName } = signUpForm;
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore
+    await setDoc(doc(db, 'users', appendBhtCode(phoneNumber as string)), {
+      phoneNumber,
+      firstName, lastName
+    });
+  };
+
+  const generateOtp = async (signUpForm: SignUpFormModel) => {
+    setShowLoader(true);
+    const { phoneNumber } = signUpForm;
+    await verifyPhone.sendVerification(`+975${phoneNumber}`);
+    setShowLoader(false);
+    setOtpGenerated(true);
+  };
+
+  const verifyOtp = async (signUpForm: SignUpFormModel) => {
+    try {
+      const { otp } = signUpForm;
+      if (otp) {
+        setShowLoader(true);
+        const signedIn = await verifyPhone.verifyOtp(otp);
+        if (signedIn) {
+          await setUpUserProfile(signUpForm);
+          showNotification('Thanks for signing up', NotificationTypeEnum.Success);
+          void router.replace(`/${MboxRoutes.Dashboard}`);
+        }
+      }
+    } catch (e) {
+      showNotification(e.message, NotificationTypeEnum.Error);
+    }
+  };
+
 
   return (
     <>
-      <Formik initialValues={SIGN_UP_FORM_INIT} onSubmit={otpGenerated ? (values) => console.log(values) : (values) => console.log('this', values)}>
+      <Formik initialValues={SIGN_UP_FORM_INIT}
+              onSubmit={otpGenerated ? (values) => console.log(values) : (values) => console.log('this', values)}>
         {formik => (
           <Form>
             <Flex
@@ -105,7 +152,7 @@ export const SignUp = (props: SignUpProps) => {
                         }}
                         onClick={async () => {
                           if (otpGenerated) {
-                            console.log('adsf')
+                            console.log('adsf');
                           } else {
                             formik.handleSubmit();
                             setOtpGenerated(true);
@@ -122,7 +169,7 @@ export const SignUp = (props: SignUpProps) => {
                         _hover={{
                           bg: 'orange.500'
                         }}
-                        type="submit"
+                        type='submit'
                       >
                         Sign Up
                       </Button>
@@ -137,6 +184,7 @@ export const SignUp = (props: SignUpProps) => {
                 </Box>
               </Stack>
             </Flex>
+            <div id='recaptcha-container' />
           </Form>
         )
         }
@@ -146,3 +194,8 @@ export const SignUp = (props: SignUpProps) => {
 };
 
 export default SignUp;
+
+function getFirestore(app: FirebaseApp) {
+  throw new Error('Function not implemented.');
+}
+
