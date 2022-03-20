@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
+import Link from 'next/link';
 import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import DesktopNav from './desktop-nav';
 import { NavItems } from '../../models';
@@ -20,7 +21,8 @@ export interface NavProps {
   children?: React.ReactNode;
   items: NavItems;
 }
-export const Navigation = ({children, items}: NavProps) => {
+
+export const Navigation = ({ children, items }: NavProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -49,12 +51,14 @@ export const Navigation = ({children, items}: NavProps) => {
           />
         </Flex>
         <Flex flex={{ base: 1 }} justify={{ base: 'center', md: 'start' }}>
-          <Text
-            textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
-            fontFamily={'heading'}
-            color={useColorModeValue('gray.800', 'white')}>
-            Logo
-          </Text>
+          <Link href="/">
+            <Text
+              textAlign={useBreakpointValue({ base: 'center', md: 'left' })}
+              fontFamily={'heading'}
+              color={useColorModeValue('gray.800', 'white')}>
+              Logo
+            </Text>
+          </Link>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
             <DesktopNav items={items} />
@@ -94,7 +98,7 @@ export const Navigation = ({children, items}: NavProps) => {
       {children}
     </Box>
   );
-}
+};
 
 const NAV_ITEMS: NavItems = [
   {
