@@ -18,8 +18,9 @@ import React from 'react';
 
 export interface NavProps {
   children?: React.ReactNode;
+  items: NavItems;
 }
-export const Navigation = ({children}: NavProps) => {
+export const Navigation = ({children, items}: NavProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -56,7 +57,7 @@ export const Navigation = ({children}: NavProps) => {
           </Text>
 
           <Flex display={{ base: 'none', md: 'flex' }} ml={10}>
-            <DesktopNav items={NAV_ITEMS} />
+            <DesktopNav items={items} />
           </Flex>
         </Flex>
 
@@ -88,7 +89,7 @@ export const Navigation = ({children}: NavProps) => {
       </Flex>
 
       <Collapse in={isOpen} animateOpacity>
-        <MobileNav items={NAV_ITEMS} />
+        <MobileNav items={items} />
       </Collapse>
       {children}
     </Box>
