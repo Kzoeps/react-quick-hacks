@@ -14,8 +14,12 @@ import { CloseIcon, HamburgerIcon } from '@chakra-ui/icons';
 import DesktopNav from './desktop-nav';
 import { NavItems } from '../../models';
 import MobileNav from './mobile-nav';
+import React from 'react';
 
-export default function Navigation() {
+export interface NavProps {
+  children?: React.ReactNode;
+}
+export const Navigation = ({children}: NavProps) => {
   const { isOpen, onToggle } = useDisclosure();
 
   return (
@@ -86,6 +90,7 @@ export default function Navigation() {
       <Collapse in={isOpen} animateOpacity>
         <MobileNav items={NAV_ITEMS} />
       </Collapse>
+      {children}
     </Box>
   );
 }
