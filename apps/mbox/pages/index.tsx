@@ -1,7 +1,12 @@
 import { LandingTemplate } from '@react-quick-hacks/ui-kit';
 import { LANDING_TEXT } from '../constants';
+import { useRouter } from 'next/router';
 
 export function Index() {
+  const router = useRouter();
+  const onSignUpClick = () => {
+    void router.push(`/sign-up`)
+  }
   /*
    * Replace the elements below with your own.
    *
@@ -14,6 +19,7 @@ export function Index() {
       description={LANDING_TEXT.description}
       ctaButtonDescription={LANDING_TEXT.ctaButtonDescription}
       secondaryButtonDescription={LANDING_TEXT.secondaryButtonDescription}
+      onPrimaryButtonClick={onSignUpClick}
     />
   );
 }

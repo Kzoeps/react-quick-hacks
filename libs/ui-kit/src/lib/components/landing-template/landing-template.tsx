@@ -8,10 +8,11 @@ export interface LandingTemplateProps {
   description: string;
   ctaButtonDescription: string;
   secondaryButtonDescription: string;
+  onPrimaryButtonClick?: () => void;
 }
 
 export function LandingTemplate(props: LandingTemplateProps) {
-  const  { title, titleSlogan, description, ctaButtonDescription, secondaryButtonDescription } = props;
+  const  { title, titleSlogan, description, ctaButtonDescription, secondaryButtonDescription, onPrimaryButtonClick = () => undefined } = props;
   return (
     <Container maxW={'5xl'}>
       <Stack
@@ -33,6 +34,7 @@ export function LandingTemplate(props: LandingTemplateProps) {
         </Text>
         <Stack spacing={6} direction={'row'}>
           <Button
+            onClick={onPrimaryButtonClick}
             rounded={'full'}
             px={6}
             colorScheme={'orange'}

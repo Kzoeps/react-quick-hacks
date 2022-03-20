@@ -74,17 +74,17 @@ export const Navigation = ({children, items}: NavProps) => {
             href={'#'}>
             Sign In
           </Button>
-          <Button
+          {/*<Button
             display={{ base: 'none', md: 'inline-flex' }}
             fontSize={'sm'}
             fontWeight={600}
             color={'white'}
-            bg={'pink.400'}
+            bg={'orange.400'}
             _hover={{
-              bg: 'pink.300'
+              bg: 'orange.500'
             }}>
             Sign Up
-          </Button>
+          </Button>*/}
         </Stack>
       </Flex>
 
