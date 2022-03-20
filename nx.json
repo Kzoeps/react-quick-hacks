@@ -35,6 +35,13 @@
       "tags": [],
       "implicitDependencies": ["mbob-scanner"]
     },
+    "mbox": {
+      "tags": []
+    },
+    "mbox-e2e": {
+      "tags": [],
+      "implicitDependencies": ["mbox"]
+    },
     "shared": {
       "tags": []
     },
