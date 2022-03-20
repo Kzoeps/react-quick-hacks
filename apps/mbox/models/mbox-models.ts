@@ -6,3 +6,10 @@ export enum MboxRoutes {
   AddRecord = 'add-record',
   Home = '/',
 }
+
+export interface SignUpFormModel {
+  firstName: string;
+  lastName: string;
+  phoneNumber: string;
+  otp: string;
+}
